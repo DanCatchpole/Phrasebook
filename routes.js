@@ -15,7 +15,7 @@ const PORT = 2907;
 
 
 
-router.get('/', (req, res) => {
+router.get('/', function (req, res)  {
     res.redirect("/app");
 });
 
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 
 
 // When the user requests the app directory
-router.get('/app', (req, res) => {
+router.get('/app', function (req, res)  {
     var sess = req.session;
 
     if (sess.username) {
@@ -33,7 +33,7 @@ router.get('/app', (req, res) => {
                 console.log(err);
             } else if (langObj) {
                 var q = types.Word.find({username: sess.username}).sort({_id: -1}).limit(10);
-                q.exec((err, words) => {
+                q.exec(function(err, words) {
                     res.render('app', { title: appName + " - Home", maintitle: `${langObj.hello} ${sess.user.firstname}!`, u: sess.user, selected: "overview", s: sess, w: words});
                 });
             }
@@ -44,7 +44,7 @@ router.get('/app', (req, res) => {
 });
 
 
-router.get("/app/newlanguage", (req, res) => {
+router.get("/app/newlanguage", function (req, res)  {
     var sess = req.session;
 
     if (sess.username) {
@@ -56,16 +56,16 @@ router.get("/app/newlanguage", (req, res) => {
 
 });
 
-router.get('/app/category', (req, res) => {
+router.get('/app/category', function (req, res)  {
     var sess = req.session;
     var id = req.query.c;
     if (sess.username) {
-        types.Category.findOne({ _id: id }, (err, category) => {
+        types.Category.findOne({ _id: id }, function(err, category) {
             if (err) {
                 console.log(err);
             } else if (category.language == sess.currentlanguage.shortened) {
                 var q = types.Word.find({ category: id }).sort({'word': 1});
-                q.exec((err, words) => {
+                q.exec(function(err, words) {
                     res.render('category', { title: appName + " - Category", u: sess.user, selected: "category"+id, s: sess, current: category, words: words });
                 });
             } else {
@@ -77,7 +77,7 @@ router.get('/app/category', (req, res) => {
     }
 });
 
-router.get("/app/categories", (req, res) => {
+router.get("/app/categories", function (req, res)  {
     var sess = req.session;
 
     if (sess.username) {
@@ -94,7 +94,7 @@ router.get("/app/categories", (req, res) => {
 });
 
 
-router.get('/app/language/change', (req, res) => {
+router.get('/app/language/change', function (req, res)  {
     var sess = req.session;
 
     if (sess.username) {
@@ -111,7 +111,7 @@ router.get('/app/language/change', (req, res) => {
     }
 });
 
-router.get('/app/category/new', (req, res) => {
+router.get('/app/category/new', function (req, res)  {
     var sess = req.session;
 
     if (sess.username) {
@@ -122,7 +122,7 @@ router.get('/app/category/new', (req, res) => {
     }
 });
 
-router.post('/app/category/new', (req, res) => {
+router.post('/app/category/new', function (req, res)  {
     var sess = req.session;
     var name = req.body.category;
     var short = req.body.shortened;
@@ -143,7 +143,7 @@ router.post('/app/category/new', (req, res) => {
 
 /**               LOGIN SECTION               **/
 
-router.get('/login', (req, res) => {
+router.get('/login', function (req, res)  {
     if (req.session.username == null || req.session.username == "") {
         res.render('login', { title: appName + ' - Login', s: req.session, error: ""});
     } else {
@@ -153,7 +153,7 @@ router.get('/login', (req, res) => {
 
 
 // If we recieve a login request (POST @ /login)
-router.post('/login', (req, res) => {
+router.post('/login', function (req, res)  {
     var username = req.body.username;
     var password = req.body.password;
 
@@ -178,7 +178,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.get("/app/words/search", (req, res) => {
+router.get("/app/words/search", function (req, res)  {
     var sess = req.session;
     var query = req.query.search;
     var username = req.query.username;
@@ -195,7 +195,7 @@ router.get("/app/words/search", (req, res) => {
 
 
 
-router.get("/app/words/new", (req, res) => {
+router.get("/app/words/new", function (req, res)  {
     var sess = req.session;
     var categoryID = req.query.c;
     if (categoryID) {
@@ -204,7 +204,7 @@ router.get("/app/words/new", (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    types.Category.findOne({ _id: categoryID }, (err, category) => {
+                    types.Category.findOne({ _id: categoryID }, function(err, category) {
                         if (category) {
                             res.render('newword', { title: appName + ` - New Word (${category.name})`, maintitle: `New Word (${category.name})`, u: sess.user, selected: "category" + categoryID, s: sess, categoryID: categoryID, categoryName: category.name});
                         } else {
@@ -222,7 +222,7 @@ router.get("/app/words/new", (req, res) => {
 });
 
 // Respond to a new word POST request
-router.post("/app/words/new", (req, res) => {
+router.post("/app/words/new", function (req, res)  {
     var sess = req.session;
     var word = req.body.word;
     var translations = req.body.translations;
@@ -233,7 +233,7 @@ router.post("/app/words/new", (req, res) => {
     // var Word = mongoose.model('Word', {word: String, language: String, translations: Array});
 
     if (word != "" && translations != "" && actualTrans.length != 0) {
-        types.Word.find({ word: word, username: sess.username, language: sess.currentlanguage.shortened }, (err, words) => {
+        types.Word.find({ word: word, username: sess.username, language: sess.currentlanguage.shortened }, function(err, words) {
             if (words.length == 0) {
                 var w = new types.Word({word: word, username: sess.username, language: sess.currentlanguage.shortened, translations: actualTrans, category: categoryID, catName: categoryName});
                 w.save(function (err) {
@@ -252,7 +252,7 @@ router.post("/app/words/new", (req, res) => {
 });
 
 // Respond to a changelanguage?langShort="<LANG>" request.
-router.get("/app/changelanguage", (req, res) => {
+router.get("/app/changelanguage", function (req, res)  {
     var short = req.query.langShort;
     if (req.session.username) {
         types.Language.findOne({ shortened: short }, function (err, langObj) {
@@ -263,7 +263,7 @@ router.get("/app/changelanguage", (req, res) => {
                     if (err) {
                         console.log(err);
                     } else if (userObj) {
-                        userObj.languages.forEach(elem => {
+                        userObj.languages.forEach(function(elem) {
                             if (elem.shortened == short) {
                                 //console.log(elem);
                                 req.session.currentlanguage = elem;
@@ -292,7 +292,7 @@ router.get("/app/changelanguage", (req, res) => {
 /**               REGISTER SECTION               **/
 
 // Render the REGISTER page
-router.get('/register', (req, res) => {
+router.get('/register', function (req, res)  {
     if (req.session.user_id == null) {
         res.render('register', {title: appName + " - Register", s: req.session, error: ""});
     } else {
@@ -301,7 +301,7 @@ router.get('/register', (req, res) => {
 });
 
 // Handle a POST request to the REGISTER page
-router.post('/register', (req, res) => {
+router.post('/register', function (req, res)  {
     // Check if user is in database already
     // var username =
     var regUser = req.body;
@@ -339,7 +339,7 @@ router.post('/register', (req, res) => {
 });
 
 // Handle incoming request to the ALL WORDS page
-router.get("/app/words", (req, res) => {
+router.get("/app/words", function (req, res)  {
     if (req.session.username && req.session.categories) {
         // Find a user with this username
         var q = types.Word.find({username: req.session.username, language: req.session.currentlanguage.shortened }).sort({'word': 1});
@@ -356,7 +356,7 @@ router.get("/app/words", (req, res) => {
 });
 
 
-router.get("/app/sidebar", (req, res) => {
+router.get("/app/sidebar", function (req, res)  {
     var sidebar = req.query.sidebar;
     if (sidebar == "big" || sidebar == "small") {
         req.session.sidebar = sidebar;
@@ -367,7 +367,7 @@ router.get("/app/sidebar", (req, res) => {
 
 
 // Handle requests to LOGOUT the user
-router.get("/logout", (req, res) => {
+router.get("/logout", function (req, res)  {
     req.session.regenerate(function (err) {
         if (err) {
             console.log(err);
@@ -378,7 +378,7 @@ router.get("/logout", (req, res) => {
 
 
 // If the page hasn't been found - Error 404 => redirect to the login page
-router.use((req, res, next) => {
+router.use(function(req, res, next) {
     res.redirect("/login");
 });
 
