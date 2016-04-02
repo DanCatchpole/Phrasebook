@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+    head
+        title= title
+        link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
+        meta(name="viewport", content="width-device-width, initial-scale=1")
+        meta(name="theme-color", content="#188bee")
+        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+    body
+        include sidebar.jade
+        main
+            div.topBar
+                div.top
+                    span.mainTitle
+                        i= current.shortened
+                        span= current.name
+                        span.padding
+                        span.num-badge= words.length
+                    div.buttons
+                        a(href="/app/words/new?c=" + current._id).button Add new word
+            div.content
+                div(class="wbtitle").wordBlock
+                    span.lang 
+                        h1= s.currentlanguage.language
+                    span.padding
+                    span.english 
+                        h1 English
+                div(class="wbadd").wordBlock
+                    span.addnew
+                        a(href="/app/words/new?c=" + current._id) Add new
+                            i.fa.fa-fw.fa-plus
+                            //- span Add new
+                div.allWords
+                    each val in words
+                        div.wordBlock
+                            span.lang= val.word
+                            span.padding
+                            span.english= val.translations
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="/js/dropdown.js")
+        script(src="/js/search.js")
+        script(src="/js/comma.js")
+        script(src="/js/sidebar.js")

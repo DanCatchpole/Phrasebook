@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        title= title
+        link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
+        meta(name="viewport", content="width-device-width, initial-scale=1")
+        meta(name="theme-color", content="#188bee")
+        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+    body
+        include sidebar.jade
+        main
+            div.topBar
+                div.top
+                    span.mainTitle
+                        i L
+                        span Change Language
+            div.content
+                ul.categoryList
+                    each lang in u.languages
+                        li
+                            if (lang.shortened == s.currentlanguage.shortened)
+                                a(href="/app/changelanguage?langShort=" + lang.shortened).active
+                                    img(class="languageIcon", src="http://dcatcher.me/assets/" + lang.shortened + ".svg")
+                                    span.languageName= lang.language
+                            else
+                                a(href="/app/changelanguage?langShort=" + lang.shortened)
+                                    img(class="languageIcon", src="http://dcatcher.me/assets/" + lang.shortened + ".svg")
+                                    span.languageName= lang.language
+
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="/js/dropdown.js")
+        script(src="/js/search.js")

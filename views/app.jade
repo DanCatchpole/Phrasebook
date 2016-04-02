@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        title= title
+        link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
+        meta(name="viewport", content="width-device-width, initial-scale=1")
+        meta(name="theme-color", content="#188bee")
+        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+    body
+        include sidebar.jade
+        main
+            div.topBar
+                div.top
+                    span.mainTitle 
+                        i(class="fa fa-fw fa-home")
+                        span= maintitle 
+            div.content
+                h2 The last 10 words you added:
+                div.allWords
+                    each val in w
+                        div.wordBlock
+                            span.lang= val.word
+                            span.padding
+                            span.english= val.translations
+                            span.padding
+                            span.category
+                                img(class="languageIcon", src="http://dcatcher.me/assets/" + val.language + ".svg")
+
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="/js/dropdown.js")
+        script(src="/js/sidebar.js")

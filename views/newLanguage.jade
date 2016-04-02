@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        title= title
+        link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
+        meta(name="viewport", content="width-device-width, initial-scale=1")
+        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+    body
+        include sidebar.jade
+        main
+            div.topBar
+                div.top
+                    span.mainTitle 
+                        i(class="fa fa-fw fa-plus")
+                        span= maintitle 
+            div.content
+                //- h1= message
+                
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="/js/dropdown.js")
+        script(src="/js/sidebar.js")

@@ -1,0 +1,125 @@
+nav.sidebar(class=s.sidebar === "small" ? "small" : "")
+    div.user-section
+        ul.section
+            li.drop
+                a(href='#', class='userIcon')
+                    div.userSection
+                        img(class="icon", src= u.profile_icon)
+                        img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+                    span= `${u.firstname} ${u.lastname.substring(0, 1)}.`
+                    span.sticky-push
+                    img(class="rot arrow", src="http://dcatcher.me/testing/sidebar/downarrow.svg")
+        ul.dropdown-elements
+            li(class="hide hidden")
+                a(href="#") 
+                    i(class="fa fa-fw fa-user")
+            li(class="hide hidden")
+                a(href="/settings")
+                    i(class="fa fa-fw fa-cog")
+
+            li(class="hide hidden")
+                a(href="/logout")
+                    i(class="fa fa-fw fa-sign-out")
+
+    ul.main
+        li.navSubheading Main
+        li
+            if (selected == "overview")
+                a(href="/app").active
+                    i(class="fa fa-fw fa-home")
+                    span Overview
+            else
+                a(href="/app")
+                    i(class="fa fa-fw fa-home")
+                    span Overview
+
+        li
+            if (selected == "allwords")
+                a(href="/app/words").active
+                    i(class="fa fa-fw fa-clock-o")
+                    span All Words
+            else
+                a(href="/app/words")
+                    i(class="fa fa-fw fa-clock-o")
+                    span All Words
+    ul.categories
+        li.navSubheading Categories
+        each category in s.categories
+            li
+                if (selected == "category" + category._id)
+                    a(href="/app/category?c=" + category._id).active
+                        i= category.shortened
+                        span= category.name
+                        span.sticky-push
+                        span.counter= category.words
+                else
+                    a(href="/app/category?c=" + category._id)
+                        i= category.shortened
+                        span= category.name
+                        span.sticky-push
+                        span.counter= category.words
+        if (selected == "newcategory")
+            li
+                a(href="/app/category/new", class="addNewCategory").active
+                    i(class="fa fa-plus fa-fw")
+                    span Add new
+        else
+            li
+                a(href="/app/category/new", class="addNewCategory")
+                    i(class="fa fa-plus fa-fw")
+                    span Add new
+
+    div.sticky-push
+    ul.languages
+        li.navSubheading Languages
+        each val in u.languages
+            if (val.shortened != s.currentlanguage.shortened)
+                li
+                    a(href="/app/changelanguage?langShort=" + val.shortened)
+                        img(class="languageIcon", src="http://dcatcher.me/assets/" + val.shortened + ".svg")
+                        span= val.language
+        li
+            if (selected == "newlanguage")
+                a(href="/app/newlanguage").active
+                    i(class="fa fa-plus fa-fw")
+                    span Add new
+            else
+                a(href="/app/newlanguage")
+                    i(class="fa fa-plus fa-fw")
+                    span Add new
+        li
+            a(href="#").shrink
+                img(class="rot arrow rot-180 hideBar", src="http://dcatcher.me/testing/sidebar/downarrow.svg")
+                span Hide Navigation Bar
+
+nav.sideBarMOB
+    ul
+        li
+            a(href="/app/user").icon
+                img(class="icon", src= u.profile_icon)
+                //- img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+    ul
+        li
+            if (selected == "categories")
+                a(href="/app/categories").active
+                    b Categories
+            else
+                a(href="/app/categories")
+                    b Categories
+    div.sticky-push
+    ul
+        li
+            if (selected == "languagechange")
+                a(href="/app/language/change").flag.active
+                    img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+            else
+                a(href="/app/language/change").flag
+                    img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+        li
+            a(href="/app/user/settings")
+                i(class="fa fa-fw fa-cog")
+        li
+            a(href="/logout")
+                i(class="fa fa-fw fa-sign-out")
+            
+    
