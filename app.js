@@ -54,7 +54,7 @@ app.use(session({ secret: SECRET }));
 app.use(function (req, res, next) {
     // If user is logged in + we havent saved to the session before
     if (req.session.username && !req.session.user) {
-        types.User.findOne({ username: req.session.username }, function(err, userObj) {
+        types.User.findOne({ username: req.session.username }, (err, userObj) => {
             if (err) {
                 next(err);
             } else if (userObj) {
@@ -74,7 +74,7 @@ app.use(function (req, res, next) {
 app.use(function (req,res,next) {
     if (req.session.username) {
         // Find all categories for this user
-        types.Category.find({username: req.session.username, language: req.session.currentlanguage.shortened}, function(err, categories) {
+        types.Category.find({username: req.session.username, language: req.session.currentlanguage.shortened}, (err, categories) => {
             if (err) {
                 // If we have an error, stop and pass it onto the next middleware
                 next(err);
@@ -82,7 +82,7 @@ app.use(function (req,res,next) {
                 // Run an async foreach loop, for each element in the categories array.
                 async.each(categories, function(elem, callback) {
                     // Gather all words for this category - asynchronously ofc...
-                    types.Word.count({username: req.session.username, language: req.session.currentlanguage.shortened, category: elem._id}, function(err, c) {
+                    types.Word.count({username: req.session.username, language: req.session.currentlanguage.shortened, category: elem._id}, (err, c) => {
                         if (err) {
                             // If we have an error, pass it to the callback function
                             callback(err);
