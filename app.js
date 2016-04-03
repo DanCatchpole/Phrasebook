@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
@@ -29,7 +30,7 @@ function escapeHtml(text) {
 const appName = 'Phrasebook';
 
 // Port the server will be running on
-const PORT = 2907;
+const PORT = 8261;
 
 // Secret key
 const SECRET = '4D2EC942A81E627F1EF1EC6B4ACD7';
@@ -38,10 +39,10 @@ const SECRET = '4D2EC942A81E627F1EF1EC6B4ACD7';
 app.set('view engine', 'jade');
 
 // Setup directories for use statically
-app.use('/css', express.static(__dirname + '/css'));
+app.use('/css', express.static("/phrasebook" + __dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
-app.use('/assets', express.static(__dirname + '/assets'));
-
+// // app.use('/assets', express.static(__dirname + '/assets'));
+app.set('views', __dirname + '/views');
 
 // Cookies and sessions setup
 app.use(cookieParser());
@@ -115,7 +116,7 @@ app.use(function (req,res,next) {
 
 
 // Use the dedicated router to handle all incoming 'traffic'
-app.use('/', routes.router);
+app.use('/phrasebook', routes.router);
 
 
 

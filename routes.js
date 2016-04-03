@@ -16,7 +16,7 @@ const PORT = 2907;
 
 
 router.get('/', (req, res) => {
-    res.redirect("/app");
+    res.redirect("/phrasebook/app");
 });
 
 
@@ -39,7 +39,7 @@ router.get('/app', (req, res) => {
             }
         });
     } else {
-        res.redirect("/logout");
+        res.redirect("/phrasebook/logout");
     }
 });
 
@@ -51,7 +51,7 @@ router.get("/app/newlanguage", (req, res) => {
         // Find a user with this username
         res.render('newLanguage', { title: appName + " - New Language", maintitle: "Add a new Language", u: sess.user, selected: "newlanguage", s: sess });
     } else {
-        res.redirect("/login");
+        res.redirect("/phrasebook/login");
     }
 
 });
@@ -69,11 +69,11 @@ router.get('/app/category', (req, res) => {
                     res.render('category', { title: appName + " - Category", u: sess.user, selected: "category"+id, s: sess, current: category, words: words });
                 });
             } else {
-                res.redirect('/app');
+                res.redirect('/phrasebook/app');
             }
         });
     } else {
-        res.redirect("/login");
+        res.redirect("/phrasebook/login");
     }
 });
 
@@ -89,7 +89,7 @@ router.get("/app/categories", (req, res) => {
             }
         });
     } else {
-        res.redirect("/logout");
+        res.redirect("/phrasebook/logout");
     }
 });
 
@@ -107,7 +107,7 @@ router.get('/app/language/change', (req, res) => {
             }
         });
     } else {
-        res.redirect("/logout");
+        res.redirect("/phrasebook/logout");
     }
 });
 
@@ -118,7 +118,7 @@ router.get('/app/category/new', (req, res) => {
         // console.log(req.session.categories);
         res.render('newcategory', { title: appName + " - New Category", u: sess.user, selected: "newcategory", s: sess });
     } else {
-        res.redirect('/login')
+        res.redirect('/phrasebook/login')
     }
 });
 
@@ -132,9 +132,9 @@ router.post('/app/category/new', (req, res) => {
     c.save(function (err) {
         if (err) {
             console.log(err);
-            res.redirect("/app");
+            res.redirect("/phrasebook/app");
         } else {
-            res.redirect("/app");
+            res.redirect("/phrasebook/app");
         }
     });
 
@@ -147,7 +147,7 @@ router.get('/login', (req, res) => {
     if (req.session.username == null || req.session.username == "") {
         res.render('login', { title: appName + ' - Login', s: req.session, error: ""});
     } else {
-        res.redirect("/app");
+        res.redirect("/phrasebook/app");
     }
 });
 
@@ -167,7 +167,7 @@ router.post('/login', (req, res) => {
                 if (result) {
                     sess.username = userObj.username;
                     sess.currentlanguage = userObj.languages[0];
-                    res.redirect("/app");
+                    res.redirect("/phrasebook/app");
                 } else {
                     res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
                 }
@@ -208,16 +208,16 @@ router.get("/app/words/new", (req, res) => {
                         if (category) {
                             res.render('newword', { title: appName + ` - New Word (${category.name})`, maintitle: `New Word (${category.name})`, u: sess.user, selected: "category" + categoryID, s: sess, categoryID: categoryID, categoryName: category.name});
                         } else {
-                            res.redirect("/app");
+                            res.redirect("/phrasebook/app");
                         }
                     });
                 }
             });
         } else {
-            res.redirect("/logout");
+            res.redirect("/phrasebook/logout");
         }
     } else {
-        res.redirect('/app');
+        res.redirect('/phrasebook/app');
     }
 });
 
@@ -239,9 +239,9 @@ router.post("/app/words/new", (req, res) => {
                 w.save(function (err) {
                     if (err) {
                         console.log(err);
-                        res.redirect("/app");
+                        res.redirect("/phrasebook/app");
                     } else {
-                        res.redirect("/app/category?c=" + categoryID);
+                        res.redirect("/phrasebook/app/category?c=" + categoryID);
                     }
                 });
             } else {
@@ -274,7 +274,7 @@ router.get("/app/changelanguage", (req, res) => {
                         });
                     } else {
                         // No such user logged in
-                        res.redirect("/logout");
+                        res.redirect("/phrasebook/logout");
                     }
                 });
             } else {
@@ -283,7 +283,7 @@ router.get("/app/changelanguage", (req, res) => {
             }
         });
     } else {
-        res.redirect('/logout');
+        res.redirect('/phrasebook/logout');
     }
 });
 
@@ -296,7 +296,7 @@ router.get('/register', (req, res) => {
     if (req.session.user_id == null) {
         res.render('register', {title: appName + " - Register", s: req.session, error: ""});
     } else {
-        res.redirect("/app");
+        res.redirect("/phrasebook/app");
     }
 });
 
@@ -324,12 +324,12 @@ router.post('/register', (req, res) => {
                 bcrypt.hash(password, null, null, function(err, hash) {
                     // by default they can have french
                     var french = new types.Language({ language: "Français", shortened: "fra", hello: "Bonjour", colour: "#1894a3" });
-                    var newUser = new types.User({username: username, firstname: firstname, lastname: lastname, email: email, password: hash, description: "", profile_icon: "http://dcatcher.me/assets/userIcon.svg", languages: [french]});
+                    var newUser = new types.User({username: username, firstname: firstname, lastname: lastname, email: email, password: hash, description: "", profile_icon: "https://dcatcher.me/assets/userIcon.svg", languages: [french]});
                     newUser.save(function (err) {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.redirect("/login");
+                            res.redirect("/phrasebook/login");
                         }
                     });
                 });
@@ -351,7 +351,7 @@ router.get("/app/words", (req, res) => {
             }
         });
     } else {
-        res.redirect("/logout");
+        res.redirect("/phrasebook/logout");
     }
 });
 
@@ -372,14 +372,14 @@ router.get("/logout", (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.redirect("/login");
+        res.redirect("/phrasebook/login");
     });
 });
 
 
 // If the page hasn't been found - Error 404 => redirect to the login page
 router.use((req, res, next) => {
-    res.redirect("/login");
+    res.redirect("/phrasebook/login");
 });
 
 

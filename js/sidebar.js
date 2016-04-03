@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(".shrink").click(function() {
         if($('.sidebar').hasClass("small")) {
             $('.sidebar').animate({"width": 20*16 + ""}, 200, "swing");
-            $.get( '/app/sidebar', { sidebar: "big" }, function(data) {
+            $.get( '/phrasebook/app/sidebar', { sidebar: "big" }, function(data) {
 
             });
             $('.sidebar').removeClass("small", "swing");
@@ -15,7 +15,7 @@ $(document).ready(function() {
                     $(this).slideUp();
                 }
             });
-            $.get( '/app/sidebar', { sidebar: "small" }, function(data) {
+            $.get( '/phrasebook/app/sidebar', { sidebar: "small" }, function(data) {
 
             });
         }

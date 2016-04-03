@@ -10,7 +10,7 @@ function escapeHtml(text) {
 $(function(){
     $('#search').on('keyup', function(e){
         var parameters = { search: $(this).val(), username: sess.username, short: sess.currentlanguage.shortened};
-        $.get( '/app/words/search',parameters, function(data) {
+        $.get( '/phrasebook/app/words/search',parameters, function(data) {
             $(".allWords").html("");
             if (data.length == 0) {
                 $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
