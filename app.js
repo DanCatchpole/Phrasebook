@@ -5,7 +5,6 @@ var MongoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var favicon = require('serve-favicon');
 var bcrypt = require('bcrypt-nodejs');
 var async = require("async");
 
@@ -60,7 +59,6 @@ app.use(session({
     store: new MongoStore({mongooseConnection: db})
 }));
 
-// app.use(favicon('/var/www/html/assets/pb.png'));
 
 
 // Preprocess to get the current user and language details
