@@ -43,19 +43,6 @@ body {
     flex-direction: row;
 }
 
-.loading-icon {
-    // display: none;
-    // position: absolute;
-    // animation: rotate 4s infinite;
-    color: white;
-    // position: absolute;
-    // width: 100%;
-    // height: 100%;
-    // top: 50%;
-    // left: 50%;
-    // font-size: 20rem;
-}
-
 @keyframes rotate {
     0% {transform: rotate(0deg);}
     50% {transform: rotate(180deg);}
@@ -63,17 +50,13 @@ body {
 }
 
 div.overlay {
-    // display: flex;
     display: none;
     position: absolute;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     width: 100%;
-    // top: 50%;
-    // left: 50%;
     height: 100%;
-    // background-color: black;
 }
 
 div.userOverlay {
@@ -120,16 +103,13 @@ img.rot-180 {
 }
 
 main:not(.noSidebar), .invisible-form {
-    //padding: 1rem 1rem;
-    border-left: 0.25rem solid darken($primary, 5%);
+    // border-left: 0.25rem solid darken($primary, 5%);
     display: flex;
     flex-direction: column;
     flex-grow: 2;
     z-index: 100;
     height: 100%;
     box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.2);
-    //flex: 1;
-    //background-color: #F0F0F2;
 }
 
 
@@ -151,7 +131,6 @@ main:not(.noSidebar), .invisible-form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    //flex: 0 0 14rem;
     background-color: $barColor;
 
     ul.main {
@@ -162,25 +141,15 @@ main:not(.noSidebar), .invisible-form {
         flex-shrink: 0;
     }
 
-    ul.categories {
-        // max-height: 10rem;
-    }
-
-
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
-        //padding-top: 0.5rem;
-        //padding-bottom: 0.5rem;
-        //height: 100%;
         overflow: auto;
         width: 100%;
-        // height: 100%;
         li {
             a {
                 display: flex;
-                //justify-content: space-between;
                 flex-direction: row;
                 color: #eeeeee;
                 padding: 0.5rem 1.5rem 0.5rem 1.5rem;
@@ -201,8 +170,6 @@ main:not(.noSidebar), .invisible-form {
                     border-radius: 1rem;
                     background-color: white;
                     padding: 0.2rem 0.8rem;
-                    // width: 2rem;
-                    // height: 2rem;
                     color: $barColor;
                     font-size: 0.75rem;
                     font-weight: 700;
@@ -222,8 +189,6 @@ main:not(.noSidebar), .invisible-form {
                 background-color: darken($primary, 5%);
                 color: #fff;
                 position: relative;
-                //border-right: 0.4rem solid #22c9dc;
-                //padding-right: 0.6rem;
                 z-index: 101;
                 span.counter {
                     color: darken($primary, 10%);
@@ -244,15 +209,12 @@ main:not(.noSidebar), .invisible-form {
 
             a.logo {
                 height: 100%;
-                //font-size: 1.5rem;
                 font-weight: 700;
-                //line-height: 2rem;
                 margin: 0;
                 display: flex;
                 img {
                     width: 1.5rem;
                     max-height: 1.5rem;
-                    //margin-top: 0.5rem;
                     display: inline-block;
                 }
 
@@ -274,17 +236,13 @@ main:not(.noSidebar), .invisible-form {
                 align-content: center;
                 align-self: center;
                 .userSection {
-                    //position: relative;
                     margin-right: 1rem;
                     height: 100%;
                     img.icon {
                         width: 3rem;
                         max-height: 3rem;
                         display: inline-block;
-                        //margin-left: -0.1rem;
-                        //margin-right: 0.2rem;
                         border-radius: 50%;
-                        //margin-right: 1rem;
                     }
                     img.flag {
                         position: relative;
@@ -292,7 +250,6 @@ main:not(.noSidebar), .invisible-form {
                         max-height: 1.5rem;
                         right: 15px;
                         top: 3px;
-                        // border-radius: 50%;
                         margin-right: -10px;
                     }
 
@@ -316,7 +273,6 @@ main:not(.noSidebar), .invisible-form {
 
         li.navSubheading {
             color: #666;
-            //border-top: 0.1rem solid #666;
             text-transform: uppercase;
             font-weight: 600;
             font-size: 0.9rem;
@@ -324,15 +280,12 @@ main:not(.noSidebar), .invisible-form {
             margin-left: 1rem;
             margin-right: 1rem;
             padding: 0.2rem 0.4rem 0.5rem 0rem;
-            ///text-align: right;
         }
     }
 
     .user-section {
         background-color: $userSection;
         font-family: $mons;
-        //height: 5.5rem;
-        //height: 1rem;
         padding: 0;
         margin: 0;
     }
@@ -340,18 +293,7 @@ main:not(.noSidebar), .invisible-form {
 
 
 .sidebar.small {
-    // justify-content: space-between;
-    // max-width: 20rem;
-    // width: 100%;
-    width: 130px!important;
-    // cursor: pointer;;
-    // display: flex;
-    // flex-direction: column;
-    //flex: 0 0 14rem;
-    // background-color: $barColor;
-    // margin-right: -12%;
-    // width: 88%;
-
+    width: 130px !important;
 
     ul.categories li a:not(.addNewCategory) {
         justify-content: space-between !important;
@@ -360,25 +302,15 @@ main:not(.noSidebar), .invisible-form {
         list-style-type: none;
         margin: 0;
         padding: 0;
-        //padding-top: 0.5rem;
-        //padding-bottom: 0.5rem;
-        //height: 100%;
-        // overflow: auto;
         width: 100%;
-        // height: 100%;
         li {
             a {
                 display: flex;
-                // justify-content: space-between;
                 flex-direction: row;
-
-                // color: $barColor;
                 padding: 0.75rem 1.5rem 0.75rem 1.5rem;
                 text-decoration: none;
                 font-size: 1rem;
                 font-weight: 500;
-                // transition: 0.2s;
-                // align-items: center;
                 justify-content: center;
                 i {
                     line-height: 1rem;
@@ -386,23 +318,18 @@ main:not(.noSidebar), .invisible-form {
                     font-style: normal;
                     font-weight: 800;
                     font-size: 1.25rem;
-                    // padding: 0.5rem;
                 }
 
                 span.counter {
                     border-radius: 1rem;
                     background-color: white;
                     padding: 0.2rem 0.8rem;
-                    // width: 2rem;
-                    // height: 2rem;
                     color: $barColor;
                     font-size: 0.75rem;
                     font-weight: 700;
-                    // display: none;
                 }
 
                 span:not(.counter) {
-                    // color: $barColor;
                     display: none;
                 }
             }
@@ -415,8 +342,6 @@ main:not(.noSidebar), .invisible-form {
             a.active {
                 background-color: darken($primary, 5%);
                 color: #fff;
-                //border-right: 0.4rem solid #22c9dc;
-                //padding-right: 0.6rem;
                 span.counter {
                     color: darken($primary, 10%);
                 }
@@ -439,15 +364,12 @@ main:not(.noSidebar), .invisible-form {
 
             a.logo {
                 height: 100%;
-                //font-size: 1.5rem;
                 font-weight: 700;
-                //line-height: 2rem;
                 margin: 0;
                 display: flex;
                 img {
                     width: 1.5rem;
                     max-height: 1.5rem;
-                    //margin-top: 0.5rem;
                     display: inline-block;
                 }
 
@@ -464,17 +386,13 @@ main:not(.noSidebar), .invisible-form {
                 height: 5.5rem !important;
                 padding: 1rem !important;
                 .userSection {
-                    //position: relative;
                     margin-right: 0;
                     height: 100%;
                     img.icon {
                         width: 3rem;
                         max-height: 3rem;
                         display: inline-block;
-                        //margin-left: -0.1rem;
-                        //margin-right: 0.2rem;
                         border-radius: 50%;
-                        //margin-right: 1rem;
                     }
                     img.flag {
                         position: relative;
@@ -482,7 +400,6 @@ main:not(.noSidebar), .invisible-form {
                         max-height: 1.5rem;
                         right: 15px;
                         top: 3px;
-                        // border-radius: 50%;
                         margin-right: -10px;
                     }
                 }
@@ -502,7 +419,6 @@ main:not(.noSidebar), .invisible-form {
 
         li.navSubheading {
             color: #666;
-            //border-top: 0.1rem solid #666;
             text-transform: uppercase;
             font-weight: 600;
             font-size: 0.9rem;
@@ -510,14 +426,11 @@ main:not(.noSidebar), .invisible-form {
             margin-left: 1rem;
             margin-right: 1rem;
             padding: 0.2rem 0.4rem 0.5rem 0rem;
-            ///text-align: right;
         }
     }
 
     .user-section {
         background-color: $userSection;
-        //height: 5.5rem;
-        //height: 1rem;
         padding: 0;
         margin: 0;
     }
@@ -536,7 +449,6 @@ main:not(.noSidebar), .invisible-form {
 
 
 .dropdown-elements{
-    // background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
     display: flex !important;;
     justify-content: space-between;
@@ -562,7 +474,6 @@ main:not(.noSidebar), .invisible-form {
         align-items: center;
         justify-content: center;
         padding: 1rem !important;
-        // font-size: 1.25rem !important;
         i {
             padding: 0 !important;
         }
@@ -577,10 +488,6 @@ main:not(.noSidebar), .invisible-form {
 
 .hidden {
     display: none;
-}
-
-.hide:first-child {
-    //border-top: 1px solid darken($primary, 10%);
 }
 
 input.search {
@@ -603,8 +510,10 @@ div.language-selector {
     justify-content: center;
     flex-wrap: wrap;
     padding: 1rem;
+    // background: white;
     .language-block {
         display: flex;
+        text-decoration: none;
         flex-direction: column;
         align-content: center;
         align-items: center;
@@ -615,7 +524,6 @@ div.language-selector {
         box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.3);
 
         padding: 2rem;
-        // border: 1px solid $bordercolor;
         transition: background 0.2s;
         cursor: pointer;
         margin: 0.5rem;
@@ -629,8 +537,6 @@ div.language-selector {
         }
 
         img.language-icon {
-            // border-radius: 50%;
-            // border-radius
             width: 5rem;
             height: 5rem;
         }
@@ -665,11 +571,9 @@ div.submit-section {
     padding: 1rem;
     max-height: 100%;
     display: flex;
-    // flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
-    // overflow-y: auto;
     height: 100%;
     //margin: 0;
     color: #333;
@@ -713,11 +617,6 @@ div.submit-section {
 
 
 body.loginPage {
-    // background-image: radial-gradient(
-    //   circle at top right,
-    //   lighten($lightBlue, 50%),
-    //   darken($lightBlue, 10%)
-    // );
     background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("https://dcatcher.me/assets/eiffeltower.jpg");
     background-size: cover;
     background-position: center center;
@@ -732,12 +631,6 @@ body.loginPage {
 }
 
 body.registerPage {
-    // background-image: radial-gradient(
-    //   circle at top right,
-    //   lighten($gren, 30%),
-    //   darken($gren, 20%)
-    // );
-
     background:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("https://dcatcher.me/assets/colosseum.jpg");
     background-size: cover;
     background-position: center center;
@@ -747,31 +640,22 @@ body.registerPage {
         display: flex;
         justify-content: center;
         align-items: center;
-        //max-width: 400px;
         width: 100%;
     }
 }
 
 .loginBlock {
     background: rgba(0,0,0,0);
-    // box-shadow: 0 10px 8px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     max-width: 600px;
-    // max-height: 600px;
-    // height: 100%;
     width: 100%;
-    // border-radius: 2rem;
     border-radius: 1rem;
     z-index: 202;
-    // font-size: 1.5rem;
     .formTitle {
         width: 100%;
         background: none;
         padding: 1rem;
-        // padding-top: 3rem;
-        ///justify-content: center;
         align-items: center;
         justify-content: center;
-        //text-align: center;
         font-weight: 700;
         font-size: 2rem;
         color: #fff;
@@ -786,9 +670,7 @@ body.registerPage {
 }
 
 form.appForm {
-    //width: 60%;
     max-width: 50rem;
-    //max-width: 50rem;
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -804,15 +686,11 @@ form.appForm {
         display: block;
         font-size: 1rem;
         width: 100%;
-        // border-radius: 0.5rem;
-        //flex-grow: 1;
         padding: 0.5rem;
-        //margin-bottom: 1.5rem;
         border: 1px solid $bordercolor;
     }
 
     input[type=submit] {
-        //width: 20rem;
         border: 1px solid $bordercolor;
         margin-top: 1rem;
         background-color: $deepOrange;
@@ -899,7 +777,6 @@ form.appForm {
     max-height: 100%;
     overflow-y: auto;
     height: 100%;
-    //margin: 0;
     color: #333;
     background-color: #F0F0F2;
     h1 {
@@ -922,7 +799,6 @@ form.appForm {
     flex-direction: row;
     width: 100%;
     background-color: #fff;
-    //height: 100%;
 }
 .mainTitle {
     font-family: $mons;
@@ -935,7 +811,6 @@ form.appForm {
     align-content: center;
     align-items: center;
 
-    // justify-content: space-betw
     i:not(.fa) {
         padding-right: 1rem;
         font-style: normal;
@@ -973,7 +848,6 @@ div.errorMessage {
 .languageIcon {
     width: 1rem;
     max-height: 1rem;
-    // border-radius: 50%;
     margin-right: 0.5rem;
 }
 
@@ -981,7 +855,6 @@ div.errorMessage {
 .wordBlock {
     display: flex;
     flex-direction: row;
-    //justify-content: space-between;
     width: 80%;
     padding: 0;
     color: #333;
@@ -989,7 +862,6 @@ div.errorMessage {
     span:not(.addnew):not(.padding) {
         display: flex;
         flex-direction: column;
-        // align-items: center;
         justify-content: center;
         padding: 1rem;
     }
@@ -1001,7 +873,6 @@ div.errorMessage {
         a {
             width: 100%;
             height: 100%;
-            // padding: 0.5rem;
             text-decoration: none;
             color: #fff;
             font-size: 1.25rem;
@@ -1071,20 +942,6 @@ div.errorMessage {
     cursor: pointer;;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .buttons {
     display: flex;
     flex-direction: row;
@@ -1095,11 +952,9 @@ a.button {
     background-color: $primary;
     color: #fff;
     display: flex;
-    // border-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    // margin-left: 1rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
     font-weight: 600;
@@ -1109,7 +964,6 @@ a.button {
     display: block;
     align-content: center;
     justify-content: center;
-    // transition: background 0.25s;
     -webkit-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.5);
     -moz-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.5);
     box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.5);
@@ -1151,14 +1005,9 @@ ul.categoryList {
             padding: 1rem;
             display: flex;
             flex-direction: row;
-            // justify-content: center;
-            // align-content: center;
-            // align-items: center;
             span.short {
                 font-weight: 700;
-                // padding-right: 1rem;
                 width: 3rem;
-                // flex-grow: 1;
             }
 
             span.name {
@@ -1252,9 +1101,6 @@ span.num-badge {
     border-radius: 1rem;
     background-color: $barColor;
     padding: 0.2rem 0.8rem;
-    // margin-top: 0.5rem;
-    // width: 2rem;
-    // height: 2rem;
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
@@ -1266,10 +1112,6 @@ span.num-badge {
 
     body.loginPage {
         main {
-            // display: flex;
-            //justify-content: center;
-            //align-items: center;
-            //max-width: 400px;
             width: 100%;
             height: 100%;
         }
@@ -1282,10 +1124,6 @@ span.num-badge {
 
     body.registerPage {
         main {
-            // display: flex;
-            //justify-content: center;
-            //align-items: center;
-            //max-width: 400px;
             width: 100%;
             height: 100%;
         }
@@ -1293,11 +1131,8 @@ span.num-badge {
 
     .loginBlock {
         background-color: #fff;
-        //max-width: 400px;
-        //width: 100%;
         border-radius: 0;
         height: 100%;
-        //width: 100%;
         max-width: 100%;
         .formTitle {
             width: 100%;
@@ -1305,9 +1140,7 @@ span.num-badge {
             padding: 1rem;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            ///justify-content: center;
             align-items: center;
-            //text-align: center;
             font-weight: 700;
             font-size: 1.5rem;
             color: #fff;
@@ -1320,8 +1153,6 @@ span.num-badge {
             padding: 2rem;
             display: flex;
             width: 100%;
-            //max-height: 800px;
-            //height: 20rem;
             flex-direction: column;
             justify-content: space-between;
             div.formInput {
@@ -1350,13 +1181,11 @@ span.num-badge {
                     border-bottom-right-radius: 0.5rem;
                     border-left: 0;
                 }
-                //padding: 0.1rem;
                 display: flex;
                 width: 100%;
                 flex-direction: row;
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
-                // padding: 0.1rem;
                 align-items: center;
                 justify-content: center;
                 input {
@@ -1364,8 +1193,6 @@ span.num-badge {
                     width: 100%;
                     height: 100%;
                     background: none;
-                    // font-size: 1.5rem;
-                    // width: 100%;
                     flex-grow: 2;
                     font-size: 1.25rem;
                 }
@@ -1374,7 +1201,6 @@ span.num-badge {
             }
 
             input[type=submit] {
-                // margin-top: 0;
                 font-weight: 700;
                 font-size: 1.25rem;
             }
@@ -1396,19 +1222,15 @@ span.num-badge {
     }
 
     .sideBarMOB {
-        //justify-content: space-between;
         height: 3.3rem;
-        // padding: 1rem 0;
         margin: 0;
         width: 100%;
         display: flex;
         flex-direction: row;
-        //flex: 0 0 14rem;
         background-color: $barColor;
         ul {
             list-style-type: none;
             padding: 0;
-            // line-height: 1rem;
             margin: 0;
             height: 100%;
             display: flex;
@@ -1429,13 +1251,11 @@ span.num-badge {
                 a:not(.icon) {
                     font-style: none;
                     display: flex;
-                    // align-items: center;
                     justify-content: center;
                     padding: 1rem 0.5rem;
                     color: white;
                     text-decoration: none;
                     height: 100%;
-                    // line-height: 1.5rem;
                 }
                 a:hover:not(.active) {
                     background-color: darken($primary, 10%);
@@ -1448,8 +1268,6 @@ span.num-badge {
                 a.icon {
                     margin: 0;
                     display: flex;
-                    // height: 100%;
-                    // align-items: center;
                     padding: 0.75rem;
                     justify-content: center;
                     img.icon {
@@ -1459,7 +1277,6 @@ span.num-badge {
                     }
                     img.flag {
                         max-height: 1rem;
-                        // border-radius: 50%;
                         margin: 0;
                     }
                 }
@@ -1467,16 +1284,11 @@ span.num-badge {
                 a.flag {
                     margin: 0;
                     display: flex;
-                    // height: 100%;
-                    // align-items: center;
                     padding: 1rem 0.5rem;
                     justify-content: center;
                     img.flag {
                         max-height: 1rem;
-                        // border-radius: 50%;
                         margin: 0;
-                        // margin-top: -1px;
-                        // top: -10px;
                     }
                 }
             }
@@ -1484,7 +1296,6 @@ span.num-badge {
     }
 
     .top {
-        // flex-direction: column;
         height: 100%;
         padding: 1rem;
         display: flex;
@@ -1511,7 +1322,6 @@ span.num-badge {
             display: none;
             margin-left: 0rem;
             margin-top: 0.5rem;
-            //opacity: 0;
         }
     }
 
@@ -1532,14 +1342,9 @@ span.num-badge {
                 padding: 1rem;
                 display: flex;
                 flex-direction: row;
-                // justify-content: center;
-                // align-content: center;
-                // align-items: center;
                 span.short {
                     font-weight: 700;
-                    // padding-right: 1rem;
                     width: 3rem;
-                    // flex-grow: 1;
                 }
 
                 span.languageName {
@@ -1549,7 +1354,6 @@ span.num-badge {
                 .languageIcon {
                     width: 3rem;
                     max-height: 3rem;
-                    // border-radius: 50%;
                     margin-right: 1rem;
                 }
 
@@ -1581,6 +1385,50 @@ img.sidebar-arrow {
 
 .infoMessage {
     color: white;
+}
+
+div.language-picker {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    flex-direction: row;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    div.container {
+        background: #eee;
+        box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.3);
+        // padding: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+
+        div.container-title {
+            align-self: center;
+            font-family: $mons;
+            font-size: 2rem;
+            font-weight: 700;
+            background-color: white;
+            width: 100%;
+            padding: 1rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.3);
+            z-index: 1001;
+            i {
+                margin: 0 0.5rem ;
+            }
+        }
+
+        div.language-selector {
+            padding: 2rem;
+        }
+    }
+
 }
 
 *::-webkit-scrollbar {

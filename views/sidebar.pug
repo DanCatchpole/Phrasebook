@@ -1,4 +1,14 @@
 div.language-picker
+    div.container
+        div.container-title
+            i.fa.fa-fw.fa-globe
+            span Change Language
+        div.language-selector
+            each val in u.languages
+                if (val.shortened != s.currentlanguage.shortened)
+                    a(href="/phrasebook/app/changelanguage?langShort=" + val.shortened).language-block
+                        span.language-title= val.language
+                        img(src="//dcatcher.me/assets/" + val.shortened + ".svg").language-icon
 
 nav.sidebar(class=s.sidebar === "small" ? "small" : "")
     div.user-section
@@ -74,25 +84,9 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
     ul.languages.dropDown
         li.navSubheading Language
         li
-            a(href="#").currentlanguage
+            a(href="#",id="language-change-link").currentlanguage
                 img(class="languageIcon", src="//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
-                span= s.currentlanguage.language
-
-        //- each val in u.languages
-        //-     if (val.shortened != s.currentlanguage.shortened)
-        //-         li
-        //-             a(href="/phrasebook/app/changelanguage?langShort=" + val.shortened)
-        //-                 img(class="languageIcon", src="//dcatcher.me/assets/" + val.shortened + ".svg")
-        //-                 span= val.language
-        //- li
-        //-     if (selected == "newlanguage")
-        //-         a(href="/phrasebook/app/newlanguage").active
-        //-             i(class="fa fa-plus fa-fw")
-        //-             span Add new
-        //-     else
-        //-         a(href="/phrasebook/app/newlanguage")
-        //-             i(class="fa fa-plus fa-fw")
-        //-             span Add new
+                span Change Language
         li
             a(href="#").shrink
                 img(class="rot arrow rot-180 hideBar", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="hide")

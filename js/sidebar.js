@@ -29,6 +29,18 @@ $(document).ready(function() {
     $(".userSection .flag").click(function(event) {
         alert("TEST");
         event.stopPropagation();
+    });
+
+    $("#language-change-link").click(function(event) {
+        $("div.language-picker").css({'display': "flex"});
+        $("div.language-picker").animate({"opacity": 1});
+    });
+
+    $(".language-picker").click(function(event) {
+        $("div.language-picker").animate({"opacity": 0}, function() {
+            $("div.language-picker").css({'display': "none"});
+
+        });
     })
 
 });
