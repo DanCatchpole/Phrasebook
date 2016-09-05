@@ -1,5 +1,3 @@
-script.
-    var sess = !{JSON.stringify(s)};
 doctype html
 html(lang="en")
     head
@@ -10,38 +8,26 @@ html(lang="en")
         link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
         link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
-        include sidebar.jade
+        include sidebar.pug
         main
             div.topBar
                 div.top
                     span.mainTitle 
-                        i(class="fa fa-fw fa-clock-o")
-                        text All Words
-                    div.buttons
-                        form(onkeypress="return event.keyCode != 13;").searchBox
-                            input(type="hidden", id="username", value= s.username)
-                            input(type="hidden", id="shortenedLanguage", value= s.currentlanguage.shortened)
-                            input(type="text", placeholder="Search", id="search" autofocus).search
+                        i(class="fa fa-fw fa-home")
+                        span= maintitle 
+                        span.subtext= "Welcome back " + u.firstname +"."
             div.content
-                //- h1= message
-                if (words.length != 0)
-                    div(class="wbtitle").wordBlock
-                        span.lang 
-                            h1= s.currentlanguage.language
-                        span.padding
-                        span.english 
-                            h1 English
-                        span.padding
-                        span.category 
-                            h1 Category
+                if (w.length != 0)
+                    h2 The last 10 words you added:
                     div.allWords
-                        each val in words
+                        each val in w
                             div.wordBlock
                                 span.lang= val.word
                                 span.padding
                                 span.english= val.translations
                                 span.padding
-                                span.category= val.catName
+                                span.category
+                                    img(class="languageIcon", src="//dcatcher.me/assets/" + val.language + ".svg")
                 else
                     h2 You haven't added any words yet! Why not add some to a category on the left!
                     img(src="//dcatcher.me/assets/sidebar-arrow.svg").sidebar-arrow
@@ -49,6 +35,5 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
-        script(src="/js/comma.js")
-        script(src="/js/search.js")
         script(src="/js/sidebar.js")
+        script(src="/js/comma.js")

@@ -6,9 +6,9 @@ html(lang="en")
         meta(name="viewport", content="width-device-width, initial-scale=1")
         meta(name="theme-color", content="#188bee")
         link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
-link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
+        link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
-        include sidebar.jade
+        include sidebar.pug
         main
             div.topBar
                 div.top
@@ -17,16 +17,15 @@ link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
                         span Categories 
             div.content
                 ul.categoryList
-		    li
-                        a(href="/app/category/new")                                                 span.short                                                                  i(class="fa fa-fw fa-plus")                                         span.n                    each category in s.categories
+                    each category in s.categories
                         li
-                            a(href="/app/category?c=" + category._id)
+                            a(href="/phrasebook/app/category?c=" + category._id)
                                 span.short= category.shortened
                                 span.name= category.name
                                 span.padding
                                 span.num-badge= category.words
                     li
-                        a(href="/app/category/new")
+                        a(href="/phrasebook/app/category/new")
                             span.short
                                 i(class="fa fa-fw fa-plus")
                             span.name

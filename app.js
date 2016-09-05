@@ -41,7 +41,7 @@ const PORT = 8261;
 const SECRET = '4D2EC942A81E627F1EF1EC6B4ACD7';
 
 // Set the view engine to use the jade language
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // Setup directories for use statically
 app.use('/css', express.static("" + __dirname + '/css'));

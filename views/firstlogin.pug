@@ -7,12 +7,13 @@ html(lang="en")
         link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
         link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
-        include sidebar.jade
-        main
+        //- include sidebar.pug
+        main.noSidebar
             div.topBar
                 div.top
                     if m
-                        span.mainTitle 
+                        span.mainTitle
+                            img(src="https://dcatcher.me/assets/logo-notext.svg").logo
                             span Welcome to Phrasebook!
                             span.subtext Please choose a language to start collecting.
                         div.buttons
@@ -26,14 +27,11 @@ html(lang="en")
             form(method="post", action="/phrasebook/app/newlanguage").invisible-form
                 div.content-language-select
                     div.language-selector
-                        if (langs.length > 0)
-                            each lang in langs
-                                div.language-block
-                                    span.language-title= lang.language
-                                    img(src= "//dcatcher.me/assets/" + lang.shortened + ".svg").language-icon
-                                    span.hidden= lang.shortened
-                        else
-                            span(style="color: #d12929").mainTitle There are no languages to choose from
+                        each lang in m
+                            div.language-block
+                                span.language-title= lang.language
+                                img(src= "//dcatcher.me/assets/" + lang.shortened + ".svg").language-icon
+                                span.hidden= lang.shortened
                 div.submit-section
                     input(type="hidden", value="", name="langVal")#langVal.langVal
                 
@@ -41,5 +39,3 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
         script(src="/js/languagePicker.js")
-        script(src="/js/sidebar.js")
-        
