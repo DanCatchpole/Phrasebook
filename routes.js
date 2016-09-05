@@ -214,14 +214,7 @@ router.get('/app/language/change', (req, res) => {
     var sess = req.session;
 
     if (sess.username) {
-        // Find a user with this username
-        types.Language.findOne({shortened: sess.currentlanguage.shortened}, function(err, langObj) {
-            if (err) {
-                console.log(err);
-            } else if (langObj) {
-                res.render('changelanguage', { title: appName + " - Home", maintitle: `${langObj.hello} ${sess.user.firstname}!`, u: sess.user, selected: "languagechange", s: sess });
-            }
-        });
+        res.render('changelanguage', { title: appName + " - Home", u: sess.user, selected: "languagechange", s: sess });
     } else {
         res.redirect("/phrasebook/logout");
     }
