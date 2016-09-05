@@ -5,7 +5,8 @@ html(lang="en")
         link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
         meta(name="viewport", content="width-device-width, initial-scale=1")
         meta(name="theme-color", content="#188bee")
-        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+        link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
+        link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
         include sidebar.jade
         main
@@ -17,7 +18,13 @@ html(lang="en")
                         span.padding
                         span.num-badge= words.length
                     div.buttons
-                        a(href="/app/words/new?c=" + current._id).button Add new word
+                        a(href="/phrasebook/app/words/new?c=" + current._id).button Add new word
+                        form(onkeypress="return event.keyCode != 13;").searchBox
+                            input(type="hidden", id="username", value= s.username)
+                            input(type="hidden", id="shortenedLanguage", value= s.currentlanguage.shortened)
+                            input(type="text", placeholder="Search", id="search" autofocus).search
+                            input(type="hidden", value=current._id, id="category")
+
             div.content
                 div(class="wbtitle").wordBlock
                     span.lang 
@@ -27,7 +34,7 @@ html(lang="en")
                         h1 English
                 div(class="wbadd").wordBlock
                     span.addnew
-                        a(href="/app/words/new?c=" + current._id) Add new
+                        a(href="/phrasebook/app/words/new?c=" + current._id) Add new
                             i.fa.fa-fw.fa-plus
                             //- span Add new
                 div.allWords
@@ -37,8 +44,8 @@ html(lang="en")
                             span.padding
                             span.english= val.translations
 
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
         script(src="/js/search.js")
         script(src="/js/comma.js")

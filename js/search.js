@@ -9,8 +9,12 @@ function escapeHtml(text) {
 
 $(function(){
     $('#search').on('keyup', function(e){
-        var parameters = { search: $(this).val(), username: sess.username, short: sess.currentlanguage.shortened};
-        $.get( '/phrasebook/app/words/search',parameters, function(data) {
+        if ($("#category")) {
+            var parameters = { search: $(this).val(), username: $("#username").val(), category: $("#category").val(), short: $("#shortenedLanguage").val()};
+        } else {
+            var parameters = { search: $(this).val(), username: $("#username").val(), short: $("#shortenedLanguage").val()};
+        }
+        $.post( '/phrasebook/app/words/search', parameters, function(data) {
             $(".allWords").html("");
             if (data.length == 0) {
                 $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
@@ -21,24 +25,27 @@ $(function(){
                 $lang.html(elem.word);
 
                 var $padding1 = $("<span>", {class: "padding"});
-                var $padding2 = $("<span>", {class: "padding"});
 
                 var $translations = $("<span>", {class: "english"});
                 $translations.text(elem.translations);
 
-                var $category = $("<span>", {class: "category"});
-                $category.text(elem.catName);
 
                 $wordBlock.append($lang);
                 $wordBlock.append($padding1);
                 $wordBlock.append($translations);
-                $wordBlock.append($padding2);
-                $wordBlock.append($category)
+                if (!$("#category")) {
+                    var $padding2 = $("<span>", {class: "padding"});
+                    var $category = $("<span>", {class: "category"});
+                    $category.text(elem.catName);
+
+
+                    $wordBlock.append($padding2);
+                    $wordBlock.append($category)
+                }
 
                 $(".allWords").append($wordBlock);
             });
-            //$('.allWords').html(JSON.stringify(data));
-            // e.preventDefault();
+            comma();
         });
     });
 });

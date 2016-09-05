@@ -15,6 +15,148 @@ const PORT = 2907;
 
 
 
+
+router.post("/app/newlanguage", (req, res) => {
+    var sess = req.session;
+    var lang = req.body.langVal;
+    // console.log("NEW LANGUAGE" + lang);
+    if (sess.username) {
+        types.Language.findOne({shortened: lang}, (err, language) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/phrasebook/login");
+            } else if (language) {
+                types.User.update({username: sess.username}, {$push: {languages: language}}, function(err) {
+                    if (err) {
+                        console.log(err);
+                        res.redirect("/phrasebook/login");
+                    }
+                    types.User.findOne({username: sess.username}, (err, user) => {
+                        if (err) {
+                            console.log(err);
+                            res.redirect("/phrasebook/logout");
+                        } else if (user) {
+                            sess.user = user;
+                            sess.currentlanguage = user.languages[0];
+                            // console.log(sess.currentlanguage);
+                            res.redirect("/phrasebook/app");
+                        } else {
+                            res.redirect("/phrasebook/logout");
+                        }
+                    });
+                });
+            } else {
+                console.log("no lang");
+                res.redirect("/phrasebook/login");
+            }
+        });
+    } else {
+        res.redirect("/phrasebook/login");
+    }
+
+});
+
+
+// Handle requests to LOGOUT the user
+router.get("/logout", (req, res) => {
+    req.session.regenerate(function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect("/phrasebook/login");
+    });
+});
+
+
+// If we recieve a login request (POST @ /login)
+router.post('/login', (req, res) => {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    var sess = req.session;
+
+    types.User.findOne({username: username}, function(err, userObj) {
+        if (err) {
+            console.log(err);
+        } else if (userObj) {
+            bcrypt.compare(password, userObj.password, function (err, result) {
+                if (result) {
+                    sess.username = userObj.username;
+                    if (userObj.languages.length != 0) {
+                        sess.currentlanguage = userObj.languages[0];
+                    }
+                    res.send({type: "success", icon: userObj.profile_icon, name: userObj.firstname})
+                    // res.redirect("/phrasebook/app");
+                    //  else {
+                    //     res.redirect("/phrasebook/app/newlanguage");
+                    //     // console.log("redirect");
+                    // }
+                } else {
+                    res.send({type: "error"});
+                    // res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
+                }
+            });
+        } else {
+            res.send({type: "error"});
+            // res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
+        }
+    });
+});
+
+
+router.use((req, res, next) => {
+    if (req.session.user) {
+        if (req.session.user.languages.length == 0) {
+            types.Language.find({}, (err, langs) => {
+                if (err) {
+                    console.log(err);
+                } else if (langs) {
+                    res.render('firstlogin', { title: appName + " - Welcome!", u: req.session.user, selected: "newlanguage", s: req.session, m: langs });
+                } else {
+                    res.redirect("/phrasebook/logout");
+                }
+            });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+})
+
+
+
+
+
+
+router.get("/app/newlanguage", (req, res) => {
+    var sess = req.session;
+
+    if (sess.username) {
+        types.Language.find((err, l) => {
+            var languages = [];
+            l.forEach(elem => {
+                var present = false;
+                for (var i = 0; i < sess.user.languages.length; i++) {
+                    if (sess.user.languages[i].shortened == elem.shortened) {
+                        present = true;
+                        break;
+                    }
+                }
+                if (!present) {
+                    languages.push(elem);
+                }
+            });
+            res.render('newLanguage', { title: appName + " - New Language", maintitle: "Add a new Language", u: sess.user, selected: "newlanguage", s: sess, langs: languages});
+        });
+    } else {
+        res.redirect("/phrasebook/login");
+    }
+
+});
+
+
+
 router.get('/', (req, res) => {
     res.redirect("/phrasebook/app");
 });
@@ -34,7 +176,7 @@ router.get('/app', (req, res) => {
             } else if (langObj) {
                 var q = types.Word.find({username: sess.username}).sort({_id: -1}).limit(10);
                 q.exec((err, words) => {
-                    res.render('app', { title: appName + " - Home", maintitle: `${langObj.hello} ${sess.user.firstname}!`, u: sess.user, selected: "overview", s: sess, w: words});
+                    res.render('app', { title: appName + " - Home", maintitle: `${langObj.hello}!`, u: sess.user, selected: "overview", s: sess, w: words});
                 });
             }
         });
@@ -44,17 +186,6 @@ router.get('/app', (req, res) => {
 });
 
 
-router.get("/app/newlanguage", (req, res) => {
-    var sess = req.session;
-
-    if (sess.username) {
-        // Find a user with this username
-        res.render('newLanguage', { title: appName + " - New Language", maintitle: "Add a new Language", u: sess.user, selected: "newlanguage", s: sess });
-    } else {
-        res.redirect("/phrasebook/login");
-    }
-
-});
 
 router.get('/app/category', (req, res) => {
     var sess = req.session;
@@ -152,38 +283,17 @@ router.get('/login', (req, res) => {
 });
 
 
-// If we recieve a login request (POST @ /login)
-router.post('/login', (req, res) => {
+router.post("/app/words/search", (req, res) => {
+    var sess = req.session;
+    var query = req.body.search;
+    var category = req.body.category;
     var username = req.body.username;
-    var password = req.body.password;
-
-    var sess = req.session;
-
-    types.User.findOne({username: username}, function(err, userObj) {
-        if (err) {
-            console.log(err);
-        } else if (userObj) {
-            bcrypt.compare(password, userObj.password, function (err, result) {
-                if (result) {
-                    sess.username = userObj.username;
-                    sess.currentlanguage = userObj.languages[0];
-                    res.redirect("/phrasebook/app");
-                } else {
-                    res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
-                }
-            });
-        } else {
-            res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
-        }
-    });
-});
-
-router.get("/app/words/search", (req, res) => {
-    var sess = req.session;
-    var query = req.query.search;
-    var username = req.query.username;
-    var short = req.query.short;
-    var q = types.Word.find({username: username, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+    var short = req.body.short;
+    if (category) {
+        var q = types.Word.find({username: username, category: category, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+    } else {
+        var q = types.Word.find({username: username, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+    }
     q.exec(function(err, wordObjs) {
         if (err) {
             console.log(err);
@@ -269,7 +379,6 @@ router.get("/app/changelanguage", (req, res) => {
                                 req.session.currentlanguage = elem;
                                 req.session.save();
                                 res.redirect('back');
-                                //break;
                             }
                         });
                     } else {
@@ -284,6 +393,38 @@ router.get("/app/changelanguage", (req, res) => {
         });
     } else {
         res.redirect('/phrasebook/logout');
+    }
+});
+
+
+router.get('/app/category/quiz', (req, res) => {
+    var id = req.query.c;
+    if (req.session.user && id) {
+        var q = types.Category.count({username: res.session.user.username, _id: id});
+        q.exec((err, counter) => {
+            if (err) {
+                console.log(err);
+            } else if (counter == 1) {
+                var r = types.Word.find({username: res.session.user.username, category: id});
+                r.exec((err, words) => {
+                    if (err) {
+                        console.log(err);
+                    } else if (words.length > 0) {
+                        while (words.length > 10) {
+                            var index = Math.floor(Math.random() * words.length);
+                            words.splice(index, 1);
+                        }
+                        res.render('catquiz', {title: appName + " - Quiz", u: req.session.user, selected: "category" + categoryID, s: req.session, words: words});
+                    } else {
+                        res.redirect("/phrasebook/category?c=" + id);
+                    }
+                });
+            } else {
+                res.redirect("/phrasebook/app");
+            }
+        });
+    } else {
+        res.redirect("/phrasebook/app");
     }
 });
 
@@ -323,13 +464,13 @@ router.post('/register', (req, res) => {
             } else {
                 bcrypt.hash(password, null, null, function(err, hash) {
                     // by default they can have french
-                    var french = new types.Language({ language: "Français", shortened: "fra", hello: "Bonjour", colour: "#1894a3" });
-                    var newUser = new types.User({username: username, firstname: firstname, lastname: lastname, email: email, password: hash, description: "", profile_icon: "https://dcatcher.me/assets/userIcon.svg", languages: [french]});
+                    var newUser = new types.User({username: username, firstname: firstname, lastname: lastname, email: email, password: hash, description: "", profile_icon: "https://dcatcher.me/assets/userIcon.svg", languages: []});
                     newUser.save(function (err) {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.redirect("/phrasebook/login");
+                            res.render('info', {title: appName + " - Registered!", s: req.session, msg: "You have been successfully registered!", button: "Back to Login", redirect: "/phrasebook/login"});
+                            // res.redirect("/phrasebook/login");
                         }
                     });
                 });
@@ -337,6 +478,10 @@ router.post('/register', (req, res) => {
         });
     }
 });
+
+router.get("/app/info", (req, res) => {
+    res.render('info', {title: appName + " - Registered!", s: req.session, msg: "You have successfully registered", button: "Back to Login", redirect: "login"});
+})
 
 // Handle incoming request to the ALL WORDS page
 router.get("/app/words", (req, res) => {
@@ -366,15 +511,7 @@ router.get("/app/sidebar", (req, res) => {
 
 
 
-// Handle requests to LOGOUT the user
-router.get("/logout", (req, res) => {
-    req.session.regenerate(function (err) {
-        if (err) {
-            console.log(err);
-        }
-        res.redirect("/phrasebook/login");
-    });
-});
+
 
 
 // If the page hasn't been found - Error 404 => redirect to the login page

@@ -5,7 +5,8 @@ html(lang="en")
         link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
         meta(name="viewport", content="width-device-width, initial-scale=1")
         meta(name="theme-color", content="#188bee")
-        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+        link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
+        link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
         include sidebar
         main
@@ -16,14 +17,14 @@ html(lang="en")
                         span New Category 
             div.content
                 //- h1= message
-                form(action="/app/category/new", method="post").appForm
+                form(action="/phrasebook/app/category/new", method="post").appForm
                     label(for="category") Category
                     input(type="text", name="category" required)
                     label(for="shortened") Shortened version
                     input(type="text", name="shortened" required)
                     input(type="submit", value="Add new category").bgPrimary
 
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
         script(src="/js/sidebar.js")

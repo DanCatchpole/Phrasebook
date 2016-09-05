@@ -5,7 +5,8 @@ html(lang="en")
         link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
         meta(name="viewport", content="width-device-width, initial-scale=1")
         meta(name="theme-color", content="#188bee")
-        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+        link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
+        link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
         include sidebar.jade
         main
@@ -18,18 +19,18 @@ html(lang="en")
                 ul.categoryList
                     each category in s.categories
                         li
-                            a(href="/app/category?c=" + category._id)
+                            a(href="/phrasebook/app/category?c=" + category._id)
                                 span.short= category.shortened
                                 span.name= category.name
                                 span.padding
                                 span.num-badge= category.words
                     li
-                        a(href="/app/category/new")
+                        a(href="/phrasebook/app/category/new")
                             span.short
                                 i(class="fa fa-fw fa-plus")
                             span.name
                                 b Add new
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
         script(src="/js/sidebar.js")

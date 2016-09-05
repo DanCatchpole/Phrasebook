@@ -7,7 +7,8 @@ html(lang="en")
         link(rel="stylesheet", href= "/css/main.min.css", type="text/css")
         meta(name="viewport", content="width-device-width, initial-scale=1")
         meta(name="theme-color", content="#188bee")
-        link(rel="stylesheet", href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", type="text/css")
+        link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
+        link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body
         include sidebar.jade
         main
@@ -18,29 +19,36 @@ html(lang="en")
                         text All Words
                     div.buttons
                         form(onkeypress="return event.keyCode != 13;").searchBox
-                            input(type="text", placeholder="Search", id="search" autofocus)
+                            input(type="hidden", id="username", value= s.username)
+                            input(type="hidden", id="shortenedLanguage", value= s.currentlanguage.shortened)
+                            input(type="text", placeholder="Search", id="search" autofocus).search
             div.content
                 //- h1= message
-                div(class="wbtitle").wordBlock
-                    span.lang 
-                        h1= s.currentlanguage.language
-                    span.padding
-                    span.english 
-                        h1 English
-                    span.padding
-                    span.category 
-                        h1 Category
+                if (words.length != 0)
+                    div(class="wbtitle").wordBlock
+                        span.lang 
+                            h1= s.currentlanguage.language
+                        span.padding
+                        span.english 
+                            h1 English
+                        span.padding
+                        span.category 
+                            h1 Category
+                    div.allWords
+                        each val in words
+                            div.wordBlock
+                                span.lang= val.word
+                                span.padding
+                                span.english= val.translations
+                                span.padding
+                                span.category= val.catName
+                else
+                    h2 You haven't added any words yet! Why not add some to a category on the left!
+                    img(src="//dcatcher.me/assets/sidebar-arrow.svg").sidebar-arrow
 
-                div.allWords
-                    each val in words
-                        div.wordBlock
-                            span.lang= val.word
-                            span.padding
-                            span.english= val.translations
-                            span.padding
-                            span.category= val.catName
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
+        script(src="/js/comma.js")
         script(src="/js/search.js")
         script(src="/js/sidebar.js")
