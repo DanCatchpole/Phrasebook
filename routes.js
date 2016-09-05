@@ -85,20 +85,13 @@ router.post('/login', (req, res) => {
                     if (userObj.languages.length != 0) {
                         sess.currentlanguage = userObj.languages[0];
                     }
-                    res.send({type: "success", icon: userObj.profile_icon, name: userObj.firstname})
-                    // res.redirect("/phrasebook/app");
-                    //  else {
-                    //     res.redirect("/phrasebook/app/newlanguage");
-                    //     // console.log("redirect");
-                    // }
+                    res.redirect("/phrasebook/app");
                 } else {
-                    res.send({type: "error"});
-                    // res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
+                    res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
                 }
             });
         } else {
-            res.send({type: "error"});
-            // res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
+            res.render('login', { title: appName + ' - Login', s: req.session, error: "Sorry, incorrect username or password"});
         }
     });
 });
