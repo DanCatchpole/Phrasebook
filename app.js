@@ -37,7 +37,7 @@ const appName = 'Phrasebook';
 // Port the server will be running on
 const PORT = 8261;
 
-// Secret key
+// Secret key - Change for PRODUCTION
 const SECRET = '4D2EC942A81E627F1EF1EC6B4ACD7';
 
 // Set the view engine to use the jade language
