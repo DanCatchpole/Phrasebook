@@ -17,7 +17,7 @@ html(lang="en")
             div.loginBlock
                 div.formTitle 
                     img(src="https://dcatcher.me/assets/logo-col.svg").logo
-                form.glass-form.login-form
+                form.glass-form.login-form(method="post", action="login")
                     div.errorMessage
                     
                     input(type='text', placeholder='Username', name='username', id="username")
@@ -30,40 +30,40 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
-        script.
-        // Animate the login-form. (TODO: Check if this really is a little... overkill?)
-            $(".login-form").submit(function(event) {
-                $("main").fadeOut("fast", function() {
-                    $(".overlay").css({
-                        display: "flex",
-                        opacity: 0
-                    });
-                    $(".overlay").animate({opacity: 1}, 500);
-                    $.post("login", {username: $("#username").val(), password: $("#password").val()}, function(data, status, jqXHR) {
-                        if (data.type == "success") {
-                            $(".userIcon").attr("src", data.icon)
-                            $(".userOverlay h2").text("Welcome " + data.name + "!");
-                            $(".overlay").fadeOut(function () {
-                                $(".userOverlay").css({
-                                    display: "flex",
-                                    opacity: 0
-                                });
-                                $(".userOverlay").animate({opacity: 1}, 1000);
-                                setTimeout(function(){
-                                    $("body").fadeOut(function() {
-                                        window.location.replace("app");
-                                    });
-                                }, 1000);
-                            });
-                        } else {
-                            // User not logged in!
-                            $(".errorMessage").text("Invalid username or password!");
-                            $(".overlay").fadeOut(1000, function() {
-                                $("main").fadeIn("slow");
-                            });
-                        }
-                    });
-                });
-                event.stopPropagation();
-                return false;
-            });
+        //- script.
+        //- // Animate the login-form. (TODO: Check if this really is a little... overkill?)
+        //-     $(".login-form").submit(function(event) {
+        //-         $("main").fadeOut("fast", function() {
+        //-             $(".overlay").css({
+        //-                 display: "flex",
+        //-                 opacity: 0
+        //-             });
+        //-             $(".overlay").animate({opacity: 1}, 500);
+        //-             $.post("login", {username: $("#username").val(), password: $("#password").val()}, function(data, status, jqXHR) {
+        //-                 if (data.type == "success") {
+        //-                     $(".userIcon").attr("src", data.icon)
+        //-                     $(".userOverlay h2").text("Welcome " + data.name + "!");
+        //-                     $(".overlay").fadeOut(function () {
+        //-                         $(".userOverlay").css({
+        //-                             display: "flex",
+        //-                             opacity: 0
+        //-                         });
+        //-                         $(".userOverlay").animate({opacity: 1}, 1000);
+        //-                         setTimeout(function(){
+        //-                             $("body").fadeOut(function() {
+        //-                                 window.location.replace("app");
+        //-                             });
+        //-                         }, 1000);
+        //-                     });
+        //-                 } else {
+        //-                     // User not logged in!
+        //-                     $(".errorMessage").text("Invalid username or password!");
+        //-                     $(".overlay").fadeOut(1000, function() {
+        //-                         $("main").fadeIn("slow");
+        //-                     });
+        //-                 }
+        //-             });
+        //-         });
+        //-         event.stopPropagation();
+        //-         return false;
+        //-     });
