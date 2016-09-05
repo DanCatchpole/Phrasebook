@@ -36,7 +36,7 @@ const appName = 'Phrasebook';
 // Port the server will be running on
 const PORT = 8261;
 
-// Secret key - Change for PRODUCTION
+// Secret key - TODO: Change for PRODUCTION
 const SECRET = '4D2EC942A81E627F1EF1EC6B4ACD7';
 
 // Set the view engine to use the jade language
@@ -56,6 +56,7 @@ app.use(session({
     secret: SECRET,
     saveUninitialized: true,
     resave: true,
+    // Store sessions in the mongo instance - oersistant across Phrasebook restarts
     store: new MongoStore({mongooseConnection: db})
 }));
 
@@ -93,7 +94,7 @@ app.use(function (req,res,next) {
                 } else {
                     // Run an async foreach loop, for each element in the categories array.
                     async.each(categories, function(elem, callback) {
-                        // Gather all words for this category - asynchronously ofc...
+                        // Gather all words for this category
                         types.Word.count({username: req.session.username, language: req.session.currentlanguage.shortened, category: elem._id}, (err, c) => {
                             if (err) {
                                 // If we have an error, pass it to the callback function
@@ -101,7 +102,6 @@ app.use(function (req,res,next) {
                             } else {
                                 // If not, then add the count to the element in the form of the 'words' property
                                 elem.words = c;
-                                // Finally callback!
                                 callback();
                             }
                         });
@@ -113,7 +113,6 @@ app.use(function (req,res,next) {
                         } else {
                             // Otherwise we have processed all the categories, so we can now save it to the session
                             req.session.categories = categories;
-                            // And proceed onto the next middleware
                             next();
                         }
                     });
@@ -131,7 +130,6 @@ app.use(function (req,res,next) {
 
 // Use the dedicated router to handle all incoming 'traffic'
 app.use('/phrasebook', routes.router);
-
 
 
 // Show we are now active

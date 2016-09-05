@@ -7,16 +7,16 @@ html(lang="en")
         link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
         link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body.loginPage
-        div.overlay
-            i(class="fa fa-spinner fa-pulse fa-3x fa-fw loading-icon")
-        div.userOverlay
-            img.userIcon
-            h2 Welcome!
-        // include sidebar.pug
+        //- div.overlay
+        //-     i(class="fa fa-spinner fa-pulse fa-3x fa-fw loading-icon")
+        //- div.userOverlay
+        //-     img.userIcon
+        //-     h2 Welcome!
+        //- // include sidebar.pug
         main.noSidebar
             div.loginBlock
                 div.formTitle 
-                    img(src="https://dcatcher.me/assets/logo-col.svg").logo
+                    img(src="https://dcatcher.me/assets/logo-col.svg" alt="Phrasebook logo").logo
                 form.glass-form.login-form(method="post", action="login")
                     div.errorMessage
                     

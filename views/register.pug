@@ -10,13 +10,13 @@ html(lang="en")
         // include sidebar.pug
         main.noSidebar
             div.loginBlock
-                div.formTitle 
-                    img(src="https://dcatcher.me/assets/logo-col.svg").logo
+                div.formTitle
+                    img(src="https://dcatcher.me/assets/logo-col.svg", alt="Phrasebook logo").logo
                 form(class='glass-form', action='register', method='post')
                     if error
                         div.errorMessage= error
                     else
-                        
+
                     input(type='text', placeholder='Username', name='username', required)
                     div.form-group
                         input(type='text', placeholder='Firstname', name='firstname', required)
@@ -26,7 +26,7 @@ html(lang="en")
                     input(type='password', placeholder='Password', name='password', required)
                     input(type='password', placeholder='Confirm Password', name='confirmpassword', required)
                     input(type='submit', class='glass-btn', value="Register")
-                    a(href="login", class='glass-btn') 
+                    a(href="login", class='glass-btn')
                         span Already got an account? Login!
             // h2 Hello world!
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")

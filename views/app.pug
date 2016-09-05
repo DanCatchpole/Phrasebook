@@ -12,9 +12,9 @@ html(lang="en")
         main
             div.topBar
                 div.top
-                    span.mainTitle 
+                    span.mainTitle
                         i(class="fa fa-fw fa-home")
-                        span= maintitle 
+                        span= maintitle
                         span.subtext= "Welcome back " + u.firstname +"."
             div.content
                 if (w.length != 0)
@@ -27,10 +27,10 @@ html(lang="en")
                                 span.english= val.translations
                                 span.padding
                                 span.category
-                                    img(class="languageIcon", src="//dcatcher.me/assets/" + val.language + ".svg")
+                                    img(class="languageIcon", src="//dcatcher.me/assets/" + val.language + ".svg", alt= val.language)
                 else
                     h2 You haven't added any words yet! Why not add some to a category on the left!
-                    img(src="//dcatcher.me/assets/sidebar-arrow.svg").sidebar-arrow
+                    img(src="//dcatcher.me/assets/sidebar-arrow.svg", alt="Arrow to sidebar").sidebar-arrow
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")

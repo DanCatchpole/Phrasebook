@@ -14,7 +14,7 @@ html(lang="en")
         main
             div.topBar
                 div.top
-                    span.mainTitle 
+                    span.mainTitle
                         i(class="fa fa-fw fa-clock-o")
                         text All Words
                     div.buttons
@@ -26,13 +26,13 @@ html(lang="en")
                 //- h1= message
                 if (words.length != 0)
                     div(class="wbtitle").wordBlock
-                        span.lang 
+                        span.lang
                             h1= s.currentlanguage.language
                         span.padding
-                        span.english 
+                        span.english
                             h1 English
                         span.padding
-                        span.category 
+                        span.category
                             h1 Category
                     div.allWords
                         each val in words
@@ -44,7 +44,7 @@ html(lang="en")
                                 span.category= val.catName
                 else
                     h2 You haven't added any words yet! Why not add some to a category on the left!
-                    img(src="//dcatcher.me/assets/sidebar-arrow.svg").sidebar-arrow
+                    img(src="//dcatcher.me/assets/sidebar-arrow.svg" alt="expand/compress").sidebar-arrow
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")

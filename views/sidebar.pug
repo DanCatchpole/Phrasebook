@@ -1,4 +1,4 @@
-div.language-picker 
+div.language-picker
 
 nav.sidebar(class=s.sidebar === "small" ? "small" : "")
     div.user-section
@@ -6,14 +6,14 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
             li.drop
                 a(href='#', class='userIcon')
                     div.userSection
-                        img(class="icon", src= u.profile_icon)
-                        img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+                        img(class="icon", src= u.profile_icon, alt="profile icon")
+                        img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="Language Flag")
                     span= `${u.firstname} ${u.lastname.substring(0, 1)}.`
                     span.sticky-push
-                    img(class="rot arrow", src="//dcatcher.me/testing/sidebar/downarrow.svg")
+                    img(class="rot arrow", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="toggle")
         ul.dropdown-elements
             //- li(class="hide hidden")
-            //-     a(href="#") 
+            //-     a(href="#")
             //-         i(class="fa fa-fw fa-user")
             li(class="hide hidden")
                 a(href="/phrasebook/settings")
@@ -75,7 +75,7 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
         li.navSubheading Language
         li
             a(href="#").currentlanguage
-                img(class="languageIcon", src="//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+                img(class="languageIcon", src="//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
                 span= s.currentlanguage.language
 
         //- each val in u.languages
@@ -95,14 +95,14 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
         //-             span Add new
         li
             a(href="#").shrink
-                img(class="rot arrow rot-180 hideBar", src="//dcatcher.me/testing/sidebar/downarrow.svg")
+                img(class="rot arrow rot-180 hideBar", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="hide")
                 span Hide Navigation Bar
 
 nav.sideBarMOB
     ul
         li
             a(href="/phrasebook/app/user").icon
-                img(class="icon", src= u.profile_icon)
+                img(class="icon", src= u.profile_icon, alt="profile icon")
                 //- img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
     ul
         li
@@ -117,15 +117,13 @@ nav.sideBarMOB
         li
             if (selected == "languagechange")
                 a(href="/phrasebook/app/language/change").flag.active
-                    img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+                    img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
             else
                 a(href="/phrasebook/app/language/change").flag
-                    img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
+                    img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt= s.currentlanguage.shortened)
         li
             a(href="/phrasebook/app/user/settings")
                 i(class="fa fa-fw fa-cog")
         li
             a(href="/phrasebook/logout")
                 i(class="fa fa-fw fa-sign-out")
-            
-    

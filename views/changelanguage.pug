@@ -21,11 +21,11 @@ html(lang="en")
                         li
                             if (lang.shortened == s.currentlanguage.shortened)
                                 a(href="/phrasebook/app/changelanguage?langShort=" + lang.shortened).active
-                                    img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg")
+                                    img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened)
                                     span.languageName= lang.language
                             else
                                 a(href="/phrasebook/app/changelanguage?langShort=" + lang.shortened)
-                                    img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg")
+                                    img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened)
                                     span.languageName= lang.language
 
 

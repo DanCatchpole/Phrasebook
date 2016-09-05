@@ -96,7 +96,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-
+// If the user has no languages -> It is their first login. This forces them to select a language to start "learning"
 router.use((req, res, next) => {
     if (req.session.user) {
         if (req.session.user.languages.length == 0) {
@@ -116,10 +116,6 @@ router.use((req, res, next) => {
         next();
     }
 })
-
-
-
-
 
 
 router.get("/app/newlanguage", (req, res) => {
@@ -149,13 +145,9 @@ router.get("/app/newlanguage", (req, res) => {
 });
 
 
-
 router.get('/', (req, res) => {
     res.redirect("/phrasebook/app");
 });
-
-
-
 
 // When the user requests the app directory
 router.get('/app', (req, res) => {
@@ -167,8 +159,8 @@ router.get('/app', (req, res) => {
             if (err) {
                 console.log(err);
             } else if (langObj) {
-                var q = types.Word.find({username: sess.username}).sort({_id: -1}).limit(10);
-                q.exec((err, words) => {
+                var query = types.Word.find({username: sess.username}).sort({_id: -1}).limit(10);
+                query.exec((err, words) => {
                     res.render('app', { title: appName + " - Home", maintitle: `${langObj.hello}!`, u: sess.user, selected: "overview", s: sess, w: words});
                 });
             }
@@ -188,8 +180,8 @@ router.get('/app/category', (req, res) => {
             if (err) {
                 console.log(err);
             } else if (category.language == sess.currentlanguage.shortened) {
-                var q = types.Word.find({ category: id }).sort({'word': 1});
-                q.exec((err, words) => {
+                var query = types.Word.find({ category: id }).sort({'word': 1});
+                query.exec((err, words) => {
                     res.render('category', { title: appName + " - Category", u: sess.user, selected: "category"+id, s: sess, current: category, words: words });
                 });
             } else {

@@ -13,28 +13,28 @@ html(lang="en")
                 div.top
                     if m
                         span.mainTitle
-                            img(src="https://dcatcher.me/assets/logo-notext.svg").logo
+                            img(src="https://dcatcher.me/assets/logo-notext.svg", alt="Phrasebook logo").logo
                             span Welcome to Phrasebook!
                             span.subtext Please choose a language to start collecting.
                         div.buttons
                             a(href="/phrasebook/logout").button.bgRed
-                                i(class="fa fa-fw fa-sign-out") 
+                                i(class="fa fa-fw fa-sign-out")
                                 span Logout
                     else
-                        span.mainTitle 
-                            i(class="fa fa-fw fa-plus") 
-                            span Add a new Language 
+                        span.mainTitle
+                            i(class="fa fa-fw fa-plus")
+                            span Add a new Language
             form(method="post", action="/phrasebook/app/newlanguage").invisible-form
                 div.content-language-select
                     div.language-selector
                         each lang in m
                             div.language-block
                                 span.language-title= lang.language
-                                img(src= "//dcatcher.me/assets/" + lang.shortened + ".svg").language-icon
+                                img(src= "//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened).language-icon
                                 span.hidden= lang.shortened
                 div.submit-section
                     input(type="hidden", value="", name="langVal")#langVal.langVal
-                
+
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
