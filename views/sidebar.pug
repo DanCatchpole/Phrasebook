@@ -56,19 +56,30 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
     ul.categories
         li.navSubheading Categories
         each category in s.categories
+            if (category.pinned)
+                li
+                    if (selected == "category" + category._id)
+                        a(href="/phrasebook/app/category?c=" + category._id).active
+                            i= category.shortened
+                            span= category.name
+                            span.sticky-push
+                            span.counter= category.words
+                    else
+                        a(href="/phrasebook/app/category?c=" + category._id)
+                            i= category.shortened
+                            span= category.name
+                            span.sticky-push
+                            span.counter= category.words
+        if (selected == "categories")
             li
-                if (selected == "category" + category._id)
-                    a(href="/phrasebook/app/category?c=" + category._id).active
-                        i= category.shortened
-                        span= category.name
-                        span.sticky-push
-                        span.counter= category.words
-                else
-                    a(href="/phrasebook/app/category?c=" + category._id)
-                        i= category.shortened
-                        span= category.name
-                        span.sticky-push
-                        span.counter= category.words
+                a(href="/phrasebook/app/categories", class="addNewCategory").all.active
+                    i(class="fa fa-list fa-fw")
+                    span.all All Categories
+        else
+            li
+                a(href="/phrasebook/app/categories", class="addNewCategory").all
+                    i(class="fa fa-list fa-fw")
+                    span.all All Categories
         if (selected == "newcategory")
             li
                 a(href="/phrasebook/app/category/new", class="addNewCategory").active
@@ -79,7 +90,6 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
                 a(href="/phrasebook/app/category/new", class="addNewCategory")
                     i(class="fa fa-plus fa-fw")
                     span Add new
-
     div.sticky-push
     ul.languages.dropDown
         li.navSubheading Language

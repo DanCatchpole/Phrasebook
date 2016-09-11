@@ -17,10 +17,12 @@ $barColor: #1b1b1b ;
 $barColorDim: #370005;
 $lightBlue: #1894a3;
 $darkBlue: #188bee;
+$hover: rgb(40, 158, 209);
 $orang: #FF6138;
 $gren: #30a65c;
 $yell: #fffc00;
 $cyan: rgb(22, 140, 122);
+$lightGreen: rgb(27, 164, 86);
 $bordercolor: #d1d1d1;
 $bordercolorDarker: #A6ABAF;
 $deepOrange: #bd4e31;
@@ -36,6 +38,10 @@ $redd: #FF2700;
 
 * {
     box-sizing: border-box;
+}
+
+i.fa-rotate-45 {
+    transform: rotate(45deg);
 }
 
 body {
@@ -177,7 +183,18 @@ main:not(.noSidebar), .invisible-form {
 
                 span {
                     color: #eeeeee;
+                    padding-left: 0.25rem;
                 }
+
+            }
+
+            a.all:not(.active) {
+                color: #aaa;
+
+                span.all {
+                    color: #aaa ;
+                }
+
             }
 
             a.navNew {
@@ -190,17 +207,26 @@ main:not(.noSidebar), .invisible-form {
                 color: #fff;
                 position: relative;
                 z-index: 101;
+                span {
+                    color: #fff;
+                }
                 span.counter {
                     color: darken($primary, 10%);
                 }
+
             }
 
             a:hover:not(.active):not(.logo):not(.userIcon) {
                 background-color: darken($primary, 10%);
                 color: white;
+                span {
+                    color: #fff;
+                }
+
                 span.counter {
                     color: darken($primary, 10%);
                 }
+
             }
 
             a.userIcon:hover {
@@ -946,6 +972,27 @@ div.errorMessage {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    a {
+        margin: 0rem 0.25rem;
+    }
+
+    a.pin {
+        background-color: $lightGreen;
+    }
+
+    a.pin:hover {
+        background-color: darken($lightGreen, 10%);
+    }
+
+
+    a.pinned {
+        background-color: rgb(164, 27, 27);
+    }
+
+    a.pinned:hover {
+        background-color: darken(rgb(164, 27, 27), 10%);
+    }
 }
 
 a.button {
@@ -987,24 +1034,36 @@ form.searchBox {
 
 ul.categoryList {
     list-style-type: none;
+    display: flex;
+    // width: 100;
+    // overflow-x: auto;
+    flex-wrap: wrap;
+    // justify-content: space-between;
     margin: 0;
     padding: 0;
     li:last-child {
-        border-bottom: 1px solid $bordercolor;
+        // border-bottom: 1px solid $bordercolor;
     }
 
     li {
         margin: 0;
         padding: 0;
-        border-top: 1px solid $bordercolor;
-
+        // border-top: 1px solid $bordercolor;
+        position: relative;
 
         a {
             text-decoration: none;
             color: #333;
             padding: 1rem;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            margin: 0.75rem;
+            box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.3);
+
+            transition: background-color 0.2s;
             span.short {
                 font-weight: 700;
                 width: 3rem;
@@ -1018,9 +1077,37 @@ ul.categoryList {
                 width: 100%;
             }
 
+            span.pinned {
+                margin: 0rem 0.5rem;
+                background-color: $lightGreen;
+                position: absolute;
+                padding: 0.1rem;
+                width: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 2rem;
+                box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.3);
+                color: white;
+                border-radius: 50%;
+
+                top: -0.25rem;
+                right: -0.5rem;
+            }
+
             span.num-badge {
                 font-size: 0.75rem;
+                position: absolute;
+                width: auto;
+                align-self: center;
+                top: 1.75rem;
+                right: 1.75rem;
             }
+        }
+
+        a:hover {
+            background-color: $hover;
+            color: white;
         }
 
         a.active {
@@ -1333,15 +1420,19 @@ span.num-badge {
         list-style-type: none;
         margin: 0;
         padding: 0;
+        position: static;
         li {
             margin: 0;
             padding: 0;
+            width: 100%;
             a {
                 text-decoration: none;
                 color: #333;
                 padding: 1rem;
                 display: flex;
                 flex-direction: row;
+                width: auto;
+                height: auto;
                 span.short {
                     font-weight: 700;
                     width: 3rem;

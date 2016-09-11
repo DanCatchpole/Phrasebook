@@ -12,17 +12,20 @@ html(lang="en")
         main
             div.topBar
                 div.top
-                    span.mainTitle 
+                    span.mainTitle
                         i C
-                        span Categories 
+                        span Categories
             div.content
                 ul.categoryList
                     each category in s.categories
                         li
                             a(href="/phrasebook/app/category?c=" + category._id)
-                                span.short= category.shortened
                                 span.name= category.name
                                 span.padding
+                                if (category.pinned)
+                                    span.pinned
+                                        i.fa.fa-fw.fa-thumb-tack
+                                span.short= category.shortened
                                 span.num-badge= category.words
                     li
                         a(href="/phrasebook/app/category/new")

@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 
 
 
-router.get('new', (req, res) => {
+router.get('/new', (req, res) => {
     var sess = req.session;
 
     if (sess.username) {
@@ -43,13 +43,13 @@ router.get('new', (req, res) => {
     }
 });
 
-router.post('new', (req, res) => {
+router.post('/new', (req, res) => {
     var sess = req.session;
     var name = req.body.category;
     var short = req.body.shortened;
     // var Category = mongoose.model('Category', {name: String, shortened: String, language: String, username: String});
 
-    var c = new types.Category({ name: name, shortened: short, language: sess.currentlanguage.shortened, username: sess.username, words: 0 });
+    var c = new types.Category({ name: name, shortened: short, language: sess.currentlanguage.shortened, username: sess.username, words: 0, pinned: false });
     c.save(function (err) {
         if (err) {
             console.log(err);
@@ -62,7 +62,7 @@ router.post('new', (req, res) => {
 });
 
 
-router.get('quiz', (req, res) => {
+router.get('/quiz', (req, res) => {
     var id = req.query.c;
     if (req.session.user && id) {
         var q = types.Category.count({username: res.session.user.username, _id: id});
@@ -81,7 +81,7 @@ router.get('quiz', (req, res) => {
                         }
                         res.render('catquiz', {title: appName + " - Quiz", u: req.session.user, selected: "category" + categoryID, s: req.session, words: words});
                     } else {
-                        res.redirect("/phrasebook/category?c=" + id);
+                        res.redirect("/phrasebook/app/category?c=" + id);
                     }
                 });
             } else {
@@ -91,6 +91,29 @@ router.get('quiz', (req, res) => {
     } else {
         res.redirect("/phrasebook/app");
     }
+});
+
+
+router.get('/pin', (req, res) => {
+    // console.log("PIN");
+    var id = req.query.c;
+    var p = req.query.p;
+    if (req.session.user && id) {
+        if (p) {
+            var q = types.Category.update({_id: id}, {$set: {pinned: true}});
+        } else {
+            var q = types.Category.update({_id: id}, {$set: {pinned: false}});
+        }
+        q.exec((err) => {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect("/phrasebook/app/category?c=" + id);
+        })
+    } else {
+        res.redirect("/phrasebook/app");
+    }
+
 });
 
 module.exports = {

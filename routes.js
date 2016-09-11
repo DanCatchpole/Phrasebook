@@ -15,7 +15,7 @@ const appName = 'Phrasebook';
 // Port the server will be running on
 const PORT = 2907;
 
-// Models for the database
+// Routes to use
 router.use('/app/category/', category.router);
 router.use('/app/language/', language.router);
 router.use('/app/words/', words.router);
