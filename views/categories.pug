@@ -13,7 +13,7 @@ html(lang="en")
             div.topBar
                 div.top
                     span.mainTitle
-                        i C
+                        i.fa.fa-fw.fa-list
                         span Categories
             div.content
                 ul.categoryList
@@ -24,15 +24,13 @@ html(lang="en")
                                 span.padding
                                 if (category.pinned)
                                     span.pinned
-                                        i.fa.fa-fw.fa-thumb-tack
+                                        i.fa.fa-fw.fa-thumb-tack.fa-rotate-45
                                 span.short= category.shortened
                                 span.num-badge= category.words
                     li
-                        a(href="/phrasebook/app/category/new")
-                            span.short
-                                i(class="fa fa-fw fa-plus")
-                            span.name
-                                b Add new
+                        a(href="/phrasebook/app/category/new").addNew
+                            span.name Add new
+                            span.short +
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
         script(src="/js/dropdown.js")
