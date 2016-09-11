@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 var types = require('../types');
 
-var Phrasebook = require('../app');
+const appName = 'Phrasebook';
 
 /* All of these are in the /phrasebook/app/category/ directory */
 
