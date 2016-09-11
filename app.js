@@ -87,7 +87,8 @@ app.use(function (req,res,next) {
     if (req.session.username) {
         // Find all categories for this user
         if (req.session.currentlanguage) {
-            types.Category.find({username: req.session.username, language: req.session.currentlanguage.shortened}, (err, categories) => {
+            var q = types.Category.find({username: req.session.username, language: req.session.currentlanguage.shortened}).sort({pinned: -1, _id: 1});
+             q.exec((err, categories) => {
                 if (err) {
                     // If we have an error, stop and pass it onto the next middleware
                     next(err);
