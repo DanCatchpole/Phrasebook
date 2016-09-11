@@ -1448,12 +1448,14 @@ span.num-badge {
                 color: #333;
                 padding: 1rem;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 width: auto;
                 height: auto;
                 span.short {
                     font-weight: 700;
                     width: 3rem;
+                    display: block;
+                    font-size: 1.5rem;
                 }
 
                 span.languageName {
