@@ -11,7 +11,7 @@ html(lang="en")
         main.noSidebar
             div.topBar
                 div.top
-                    if m
+                    if allLangs
                         span.mainTitle
                             img(src="https://dcatcher.me/assets/logo-notext.svg", alt="Phrasebook logo").logo
                             span Welcome to Phrasebook!
@@ -27,7 +27,7 @@ html(lang="en")
             form(method="post", action="/phrasebook/app/newlanguage").invisible-form
                 div.content-language-select
                     div.language-selector
-                        each lang in m
+                        each lang in allLangs
                             div.language-block
                                 span.language-title= lang.language
                                 img(src= "//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened).language-icon
