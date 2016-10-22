@@ -17,7 +17,7 @@ html(lang="en")
                         span New Category
             div.content
                 //- h1= message
-                form(action=constants.URL +"/app/category/new", method="post").appForm
+                form(action=constants.URL + "/category/new", method="post").appForm
                     label(for="category") Category
                     input(type="text", name="category" required)
                     label(for="shortened") Shortened version

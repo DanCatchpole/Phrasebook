@@ -24,21 +24,22 @@ router.get('/', overviewController.getMainPage);
 
 // Category things
 router.get('/category', categoryController.getCategory);
-// router.get('/category/new', categoryController.createCategory); // TODO
-router.get('/category/list', categoryController.allCategories); 
+router.get('/category/new', categoryController.createCategory);
+router.post('/category/new', categoryController.createCategoryPOST);
+router.get('/category/list', categoryController.allCategories);
 router.get('/category/pin', categoryController.pinCategory);
 
 // Language things
 // router.get('/language/new', languageController.addLanguage); // TODO
-// router.get('/language/change', languageController.changeLanguage); // TODO
+router.get('/language/change', languageController.changeLanguage);
 
 // Word things
-// router.get('/words/new', wordController.createWord); // TODO
-// router.post('/words/new', wordController.postNewWord); // TODO
-// router.get('/words/all', wordController.allWords); // TODO
+router.get('/words/new', wordController.createWord);
+router.post('/words/new', wordController.createWordPOST);
+router.get('/words/all', wordController.allWords); 
 
-router.get('/404', overviewController.error404);
 // Error 404
+router.get('/404', overviewController.error404);
 router.use((req, res, next) => {
     res.redirect(constants.URL + "/404");
 });

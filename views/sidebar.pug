@@ -6,7 +6,7 @@ div.language-picker
         div.language-selector
             each val in u.languages
                 if (val.shortened != s.currentlanguage.shortened)
-                    a(href=constants.URL + "/app/changelanguage?langShort=" + val.shortened).language-block
+                    a(href=constants.URL + "/language/change?langShort=" + val.shortened).language-block
                         span.language-title= val.language
                         img(src="//dcatcher.me/assets/" + val.shortened + ".svg").language-icon
 
@@ -36,11 +36,11 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
         li.navSubheading Main
         li
             if (selected == "overview")
-                a(href=constants.URL + "/app").active
+                a(href=constants.URL).active
                     i(class="fa fa-fw fa-home")
                     span Overview
             else
-                a(href=constants.URL + "/app")
+                a(href=constants.URL)
                     i(class="fa fa-fw fa-home")
                     span Overview
 
@@ -82,7 +82,7 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
                     span.all All Categories
         if (selected == "newcategory")
             li
-                a(href=constants.URL + "/app/category/new", class="addNewCategory").active
+                a(href=constants.URL + "/category/new", class="addNewCategory").active
                     i(class="fa fa-plus fa-fw")
                     span Add new
         else
@@ -114,7 +114,7 @@ nav.sideBarMOB
                 a(href=constants.URL + "/categories").active
                     b Categories
             else
-                a(href="/phrasebook/app/categories")
+                a(href=constants.URL + "/categories")
                     b Categories
     div.sticky-push
     ul
@@ -123,7 +123,7 @@ nav.sideBarMOB
                 a(href=constants.URL + "/language/change").flag.active
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
             else
-                a(href=constants.URL + "/app/language/change").flag
+                a(href=constants.URL + "/language/change").flag
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt= s.currentlanguage.shortened)
         li
             a(href=constants.URL + "/user/settings")

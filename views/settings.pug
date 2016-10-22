@@ -17,7 +17,7 @@ html(lang="en")
                         span= maintitle
             div.content
                 //- h1= message
-                form(action=constants.URL +"/app/words/new", method="post").appForm
+                form(action=constants.URL +"/words/new", method="post").appForm
                     label(for="word") Word
                     input(type="text", name="word" required autofocus)
                     input(type="hidden", value= categoryID, name="categoryID")

@@ -22,14 +22,19 @@ class WordManager {
      * categoryID: The category to insert the word into
      */
     createWord(word, username, language, translations, categoryID, callback) {
-        exports.checkIfWordExistsInCategory(word, categoryID, (err, exists) => {
+        this.checkIfWordExistsInCategory(word, categoryID, (exists) => {
             if (!exists) {
                 let newWord = new types.Word({word: word, username: username, language: language, translations: translations, category: categoryID});
                 newWord.save((err) => {
-                    callback(err, true);
+                    if (err) {
+                        console.log(err);
+                        callback(false);
+                    } else {
+                        callback(true);
+                    }
                 })
             } else {
-                callback(err, false);
+                callback(false);
             }
         });
     };
@@ -37,13 +42,22 @@ class WordManager {
     checkIfWordExistsInCategory(word, category, callback) {
         var query = types.Word.find({word: word, category: category});
         query.exec((err, words) => {
-            if (words.length == 0) {
-                callback(err, false);
-            } else {
-                callback(err, true);
+            if (err) {
+                console.log(err);
             }
+            callback(words.length != 0);
         });
     };
+
+    getAllWordsForUserInLanguage(username, language, cb) {
+        var query = types.Word.find({username: username, language: language}).sort({'word': 1});
+        query.exec((err, words) => {
+            if (err) {
+                console.log(err);
+            }
+            cb(words);
+        });
+    }
 }
 
 module.exports = WordManager;

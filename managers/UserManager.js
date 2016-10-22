@@ -50,6 +50,16 @@ class UserManager {
         });
     }
 
+    getUser(username, cb) {
+        var query = types.User.findOne({ username: username });
+        query.exec((err, user) => {
+            if (err) {
+                console.log(err);
+            }
+            cb(user);
+        })
+    }
+
 }
 
 module.exports = UserManager;

@@ -5,22 +5,34 @@ var types = require("../types");
 var utils = require("../utils");
 class CategoryController {
     createCategory(req, res) {
+        if (req.session.username) {
+            res.render('newcategory', { title: "New Category", u: req.session.user, selected: "newcategory", s: req.session });
+        } else {
+            res.redirect(constants.URL + '/login')
+        }
+    }
 
+    createCategoryPOST(req, res) {
+        var name = req.body.category;
+        var short = req.body.shortened;
+        categoryManager.createCategory(name, short, req.session.currentlanguage.shortened, req.session.username, () => {
+            utils.refreshCategoryLists(req, res, () => {
+                res.redirect(constants.URL);
+            })
+        })
     }
 
     getCategory(req, res) {
         var sess = req.session;
         var id = req.query.c;
         if (sess.username) {
-            categoryManager.getCategory(id, (err, category) => {
-                if (err) {
-                    console.log(err);
-                } else if (category.language == sess.currentlanguage.shortened) {
+            categoryManager.getCategory(id, (category) => {
+                if (category.language == sess.currentlanguage.shortened) {
                     wordManager.getWordsInCategoryById(id, (words) => {
-                        res.render('category', { title: "Category", u: sess.user, selected: "category" + id, s: sess, current: category, words: words });
+                        res.render('category', { title: `Category (${category.name})`, u: sess.user, selected: "category" + id, s: sess, current: category, words: words });
                     });
                 } else {
-                    res.redirect(constants.URL + '/app');
+                    res.redirect(constants.URL + '/category/list');
                 }
             });
         } else {

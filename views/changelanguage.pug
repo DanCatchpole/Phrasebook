@@ -20,11 +20,11 @@ html(lang="en")
                     each lang in u.languages
                         li
                             if (lang.shortened == s.currentlanguage.shortened)
-                                a(href=constants.URL +"/app/changelanguage?langShort=" + lang.shortened).active
+                                a(href=constants.URL +"/changelanguage?langShort=" + lang.shortened).active
                                     img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened)
                                     span.languageName= lang.language
                             else
-                                a(href=constants.URL +"/app/changelanguage?langShort=" + lang.shortened)
+                                a(href=constants.URL +"/changelanguage?langShort=" + lang.shortened)
                                     img(class="languageIcon", src="//dcatcher.me/assets/" + lang.shortened + ".svg", alt= lang.shortened)
                                     span.languageName= lang.language
 

@@ -23,7 +23,7 @@ html(lang="en")
                         span.mainTitle
                             i(class="fa fa-fw fa-plus")
                             span Add a new Language
-            form(method="post", action=constants.URL +"/app/newlanguage").invisible-form
+            form(method="post", action=constants.URL +"/newlanguage").invisible-form
                 div.content-language-select
                     div.language-selector
                         if (langs.length > 0)

@@ -5,9 +5,14 @@ var types = require('../types');
 
 class CategoryManager {
 
-    createCategory(categoryName, shortened, language, username, callback) {
+    createCategory(categoryName, shortened, language, username, cb) {
         let newCategory = new types.Category({name: categoryName, shortened: shortened, language: language, username: username, words: 0, pinned: false});
-        newCategory.save(callback);
+        newCategory.save((err) => {
+            if (err) {
+                console.log(err);
+            }
+            cb();
+        });
     }
 
     getCategoriesForUserInLanguage(username, language, callback) {
@@ -28,7 +33,12 @@ class CategoryManager {
 
     getCategory(id, cb) {
         let query = types.Category.findOne({_id: id});
-        query.exec(cb);
+        query.exec((err, cat) => {
+            if (err) {
+                console.log(err);
+            }
+            cb(cat);
+        });
     }
 
     pinCategory(id, pinned, cb) {
