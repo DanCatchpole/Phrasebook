@@ -36,6 +36,20 @@ $redd: #FF2700;
 
 @import "glass";
 
+#linearGradient6386 {
+    animation: trans 10s;
+}
+
+@keyframes trans {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% { transform: rotate(180deg); }
+
+    100% { transform: rotate(360deg); }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -250,8 +264,8 @@ main:not(.noSidebar), .invisible-form {
             }
 
             a.userIcon {
-                font-size: 1.25rem;
-                font-weight: 600;
+                font-size: 1.3rem;
+                font-weight: 400;
                 align-items: center;
                 margin: 0;
                 height: 5.5rem !important;
@@ -641,32 +655,101 @@ div.submit-section {
     margin-right: 1rem;
 }
 
+body.logReg {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        width: 100%;
+        padding: 0.5rem;
 
-body.loginPage {
-    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("https://dcatcher.me/assets/eiffeltower.jpg");
-    background-size: cover;
-    background-position: center center;
+        a {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            i {
+                margin-right: 0.5rem;
+            }
+            text-decoration: none;
+            color: white;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            span {
+                color: white;
+            }
+            a {
+                border: 1px solid white;
+                border-radius: 0.2rem;
+                margin-left: 1rem;
+                padding: 0.5rem 1.5rem;
+            }
+        }
+    }
 
     main {
         display: flex;
         justify-content: center;
         align-items: center;
-        //max-width: 400px;
         width: 100%;
     }
+
+
+}
+
+
+body.loginPage {
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("https://dcatcher.me/assets/eiffeltower.jpg");
+    background-size: cover;
+    background-position: center center;
 }
 
 body.registerPage {
-    background:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("https://dcatcher.me/assets/colosseum.jpg");
+    background:linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("https://dcatcher.me/assets/greece.jpg");
     background-size: cover;
     background-position: center center;
+}
 
-
+body.errorPage {
+    background:linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("https://dcatcher.me/assets/maps.jpg");
+    background-size: cover;
+    background-position: center center;
     main {
         display: flex;
-        justify-content: center;
+        padding-top: 15%;
+        // justify-content: center;
         align-items: center;
         width: 100%;
+
+        img {
+            width: 30rem;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: white;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            border-radius: 0.2rem;
+            border: 1px solid white;
+            padding: 0.5rem 1rem;
+            transition: background 0.2s;
+        }
+
+        a:hover {
+            background-color: rgba(0,0,0,0.4)
+        }
     }
 }
 
@@ -689,8 +772,9 @@ body.registerPage {
         display:flex;
         flex-direction: row;
 
-        img.logo {
+        .logo svg{
             width: 10rem;
+            height: 10rem;
         }
     }
 }
@@ -704,7 +788,7 @@ form.appForm {
         display: inline-block;
         justify-content: justify;
         padding: 0.2rem;
-        font-weight: bold;
+        // font-weight: bold;
         color: #333;
     }
 
@@ -866,9 +950,17 @@ form.appForm {
 div.errorMessage {
     align-items: center;
     text-align: center;
-    padding-bottom: 1.5rem;
+    display: flex;
+    // justify-content: space-between;
+    padding: 1rem;
     color: $redd;
     font-weight: 700;
+    border: 1px solid $redd;
+    margin-bottom: 1rem;
+    i {
+        margin-right: 1rem;
+    }
+
 }
 
 .languageIcon {
@@ -1497,6 +1589,23 @@ img.sidebar-arrow {
 .infoMessage {
     color: white;
 }
+
+div.loginContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    label {
+        position: relative;
+        top: 3rem;
+        left: 0.75rem;
+        font-size: 1.25rem;
+        font-family: $mainFont;
+        color: darken(rgb(199, 199, 199), 5%);
+        // font-weight: 600;
+        z-index: -1;
+    }
+}
+
 
 div.language-picker {
     position: absolute;
