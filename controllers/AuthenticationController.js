@@ -7,12 +7,6 @@ var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 
 var transporter = nodemailer.createTransport(sendmailTransport);
-var emailOpts = {
-    from: "phrasebook@dcatcher.me",
-    to: "phrasebook@dcatcher.me",
-    subject: "A new user registered!",
-    text: "Username: "
-}
 
 class AuthenticationController {
     getLoginPage(req, res) {
@@ -68,7 +62,13 @@ class AuthenticationController {
                 userManager.createUser(username, firstname, lastname, email, password, (err, created) => {
                     if (created) {
                         // User created successfully
-                        mailOpts.text += username;
+                        var emailOpts = {
+                            from: "phrasebook@dcatcher.me",
+                            to: "phrasebook@dcatcher.me",
+                            subject: "A new user registered!",
+                            text: "Username: " + username
+                        }
+
                         transporter.sendMail(mailOpts, (err, info) => {
                             if(err) {
                                 console.log(err)
