@@ -45,7 +45,7 @@ $(function(){
                 }
 
                 $(".allWords").append($wordBlock);
-            });
+            }
             comma();
         });
     });
