@@ -20,7 +20,7 @@ $(function(){
             if (data.length == 0) {
                 $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
             }
-            data.forEach(elem => {
+            for (elem of data) {
                 var $wordBlock = $("<div>", {class: "wordBlock"});
                 var $lang = $("<span>", {class: "lang"});
                 $lang.html(elem.word);
