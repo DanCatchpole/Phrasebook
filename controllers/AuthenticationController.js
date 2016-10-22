@@ -1,14 +1,14 @@
 "use strict";
 var {categoryManager, wordManager, userManager} = require('../instantiatemanagers');
 var utils = require("../utils");
-const APPNAME = "Phrasebook";
+var constants = require("../constants");
 
 class AuthenticationController {
     getLoginPage(req, res) {
         if (!req.session.username) {
-                res.render('login', {title: APPNAME + ' - Login', error: ""});
+                res.render('login', {title: 'Login', error: ""});
         } else {
-            res.redirect("/phrasebook");
+            res.redirect(constants.URL);
         }
     }
 
@@ -23,22 +23,22 @@ class AuthenticationController {
                         req.session.currentlanguage = userObj.languages[0];
                     }
                     utils.refreshCategoryLists(req, res, (err) => {
-                        res.redirect("/phrasebook");
+                        res.redirect(constants.URL);
                     });
                 } else {
-                    res.render('login', { title: APPNAME + ' - Login', error: "Sorry, incorrect username or password"});
+                    res.render('login', { title: 'Login', error: "Sorry, incorrect username or password"});
                 }
             });
         } else {
-            res.render('login', { title: APPNAME + ' - Login', error: "Sorry, incorrect username or password"});
+            res.render('login', { title: 'Login', error: "Sorry, incorrect username or password"});
         }
     }
 
     getRegisterPage(req, res) {
         if (!req.session.username) {
-            res.render('register', {title: APPNAME + " - Register", error: ""});
+            res.render('register', {title: "Register", error: ""});
         } else {
-            res.redirect("/phrasebook");
+            res.redirect(process.argv[3]);
         }
     }
 
@@ -52,20 +52,20 @@ class AuthenticationController {
 
         if (!req.session.username) {
             if (password != confirmpassword) {
-                res.render('register', {title: APPNAME + " - Register", error: "Sorry, the two passwords must be the same"});
+                res.render('register', {title: "Register", error: "Sorry, the two passwords must be the same"});
             } else if (username && firstname && lastname && email && password && confirmpassword) {
                 userManager.createUser(username, firstname, lastname, email, password, (err, created) => {
                     if (created) {
-                        res.render('login', { title: APPNAME + ' - Login', error: "Registration was successful! Please log in now"});
+                        res.render('login', { title: 'Login', error: "Registration was successful! Please log in now"});
                     } else {
-                        res.render('register', {title: APPNAME + " - Register", error: "Sorry, this username was taken"});
+                        res.render('register', {title:"Register", error: "Sorry, this username was taken"});
                     }
                 });
             } else {
-                res.render('register', {title: APPNAME + " - Register", error: "All details need to be filled in"});
+                res.render('register', {title: "Register", error: "All details need to be filled in"});
             }
         } else {
-            res.redirect("/phrasebook");
+            res.redirect(constants.URL);
         }
     }
 
@@ -74,7 +74,7 @@ class AuthenticationController {
             if (err) {
                 console.log(err);
             }
-            res.redirect("/phrasebook/login");
+            res.redirect(constants.URL + "/login");
         });
     }
 

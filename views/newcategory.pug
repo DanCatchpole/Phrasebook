@@ -12,12 +12,12 @@ html(lang="en")
         main
             div.topBar
                 div.top
-                    span.mainTitle 
+                    span.mainTitle
                         i(class="fa fa-fw fa-plus")
-                        span New Category 
+                        span New Category
             div.content
                 //- h1= message
-                form(action="/phrasebook/app/category/new", method="post").appForm
+                form(action=constants.URL +"/app/category/new", method="post").appForm
                     label(for="category") Category
                     input(type="text", name="category" required)
                     label(for="shortened") Shortened version

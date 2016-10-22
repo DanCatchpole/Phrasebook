@@ -5,6 +5,7 @@ var {categoryController, overviewController, authController, languageController,
 router.use(middlewareController.refreshUserDetails);
 // router.use(middlewareController.refreshCategoryLists);
 router.use(middlewareController.firstLogin);
+router.use(middlewareController.interceptRender);
 
 // Login
 router.get('/login', authController.getLoginPage);

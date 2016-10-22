@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/phrasebook');
 var constants = require('./constants');
 
 app.set('view engine', 'pug');
-app.locals.basedir = constants.BASEDIR;
+app.locals.basedir = process.argv[4];
 // Setup directories for use statically
 app.use('/css', express.static("" + __dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 app.use(process.argv[3], routes.router);
-
+console.log(constants.URL);
 app.listen(process.argv[2], "127.0.0.1", () => {
     console.log(`\n${constants.APPNAME} started and listening on port ${process.argv[2]}`);
 })

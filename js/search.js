@@ -1,3 +1,5 @@
+constants = require("../constants");
+
 function escapeHtml(text) {
   return text
       .replace(/&/g, "&amp;")
@@ -14,7 +16,7 @@ $(function(){
         } else {
             var parameters = { search: $(this).val(), username: $("#username").val(), short: $("#shortenedLanguage").val()};
         }
-        $.post( '/phrasebook/app/words/search', parameters, function(data) {
+        $.post( constants.URL + '/app/words/search', parameters, function(data) {
             $(".allWords").html("");
             if (data.length == 0) {
                 $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);

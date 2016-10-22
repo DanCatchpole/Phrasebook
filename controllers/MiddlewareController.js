@@ -3,6 +3,9 @@ var {categoryManager, wordManager, userManager, languageManager} = require('../i
 var types = require("../types");
 var async = require("async");
 var utils = require("../utils");
+
+var constants = require("../constants");
+
 class MiddlewareController {
     refreshUserDetails(req, res, next) {
         if (req.session.username) {
@@ -29,12 +32,27 @@ class MiddlewareController {
                     console.log(error);
                     next(error);
                 } else {
-                    res.render('firstlogin', {title: "Phrasebook - Welcome!", u: req.session.user, selected: "newlanguage", s: req.session, allLangs: allLangs}) // TODO
+                    res.render('firstlogin', {title: "Welcome!", u: req.session.user, selected: "newlanguage", s: req.session, allLangs: allLangs}) // TODO
                 }
             });
         } else {
             next();
         }
+    }
+
+    interceptRender(req, res, next) {
+        var _render = res.render;
+
+        res.render = function(view, options, fn) {
+            options.constants = constants;
+            if (options.title) {
+                options.title = constants.APPNAME + " - " + options.title;
+            } else {
+                options.title = constants.APPNAME;
+            }
+            _render.call(this, view, options, fn);
+        }
+        next();
     }
 }
 

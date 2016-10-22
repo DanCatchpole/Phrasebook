@@ -12,12 +12,12 @@ html(lang="en")
         main
             div.topBar
                 div.top
-                    span.mainTitle 
+                    span.mainTitle
                         i(class="fa fa-fw fa-plus")
-                        span= maintitle 
+                        span= maintitle
             div.content
                 //- h1= message
-                form(action="/phrasebook/app/words/new", method="post").appForm
+                form(action=constants.URL +"/app/words/new", method="post").appForm
                     label(for="word") Word
                     input(type="text", name="word" required autofocus)
                     input(type="hidden", value= categoryID, name="categoryID")

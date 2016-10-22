@@ -18,12 +18,12 @@ html(lang="en")
                         span.padding
                         span.num-badge= words.length
                     div.buttons
-                        a(href="/phrasebook/app/words/new?c=" + current._id).button Add new word
+                        a(href=constants.URL +"/app/words/new?c=" + current._id).button Add new word
                         if (current.pinned)
-                            a(href="/phrasebook/app/category/pin?c=" + current._id).button.pinned
+                            a(href=constants.URL +"/app/category/pin?c=" + current._id).button.pinned
                                 i.fa.fa-fw.fa-circle
                         else
-                            a(href="/phrasebook/app/category/pin?c=" + current._id + "&p=true").button.pin
+                            a(href=constants.URL +"/app/category/pin?c=" + current._id + "&p=true").button.pin
                                 i.fa.fa-fw.fa-thumb-tack.fa-rotate-45
                         form(onkeypress="return event.keyCode != 13;").searchBox
                             input(type="hidden", id="username", value= s.username)
@@ -40,7 +40,7 @@ html(lang="en")
                         h1 English
                 div(class="wbadd").wordBlock
                     span.addnew
-                        a(href="/phrasebook/app/words/new?c=" + current._id) Add new
+                        a(href=constants.URL +"/app/words/new?c=" + current._id) Add new
                             i.fa.fa-fw.fa-plus
                             //- span Add new
                 div.allWords

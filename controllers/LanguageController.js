@@ -1,5 +1,5 @@
 "use strict";
-
+var constants = require("../constants");
 class LanguageController {
 
 }
