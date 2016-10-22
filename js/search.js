@@ -34,7 +34,7 @@ $(function(){
                 $wordBlock.append($lang);
                 $wordBlock.append($padding1);
                 $wordBlock.append($translations);
-                if (!$("#category")) {
+                if (!$(".category h1")) {
                     var $padding2 = $("<span>", {class: "padding"});
                     var $category = $("<span>", {class: "category"});
                     $category.text(elem.catName);
