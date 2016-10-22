@@ -132,6 +132,12 @@ main:not(.noSidebar), .invisible-form {
     box-shadow: 0 4px 8px 6px rgba(0, 0, 0, 0.2);
 }
 
+main.noSidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 .sideBarMOB {
