@@ -37,6 +37,6 @@ app.use(session({
 
 app.use('/phrasebook', routes.router);
 
-app.listen(constants.PORT, "127.0.0.1", () => {
-    console.log(`\n${constants.APPNAME} started and listening on port ${constants.PORT}`);
+app.listen(process.argv[2], "127.0.0.1", () => {
+    console.log(`\n${constants.APPNAME} started and listening on port ${process.argv[2]}`);
 })
