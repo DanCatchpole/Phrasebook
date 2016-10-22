@@ -11,6 +11,7 @@ div.language-picker
                         img(src="//dcatcher.me/assets/" + val.shortened + ".svg").language-icon
 
 nav.sidebar(class=s.sidebar === "small" ? "small" : "")
+    div(style="display: none;", id="constantsURL")= constants.URL;
     div.user-section
         ul.section
             li.drop
@@ -131,5 +132,3 @@ nav.sideBarMOB
         li
             a(href=constants.URL + "/logout")
                 i(class="fa fa-fw fa-sign-out")
-
-div(style="display: none;", id="constantsURL")= constants.URL;
