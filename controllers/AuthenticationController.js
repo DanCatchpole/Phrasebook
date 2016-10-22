@@ -62,7 +62,7 @@ class AuthenticationController {
                 userManager.createUser(username, firstname, lastname, email, password, (err, created) => {
                     if (created) {
                         // User created successfully
-                        var emailOpts = {
+                        var mailOpts = {
                             from: "phrasebook@dcatcher.me",
                             to: "phrasebook@dcatcher.me",
                             subject: "A new user registered!",
