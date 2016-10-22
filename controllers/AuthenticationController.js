@@ -3,6 +3,17 @@ var {categoryManager, wordManager, userManager} = require('../instantiatemanager
 var utils = require("../utils");
 var constants = require("../constants");
 
+var nodemailer = require('nodemailer');
+var sendmailTransport = require('nodemailer-sendmail-transport');
+
+var transporter = nodemailer.createTransport(sendmailTransport);
+var emailOpts = {
+    from: "phrasebook@dcatcher.me",
+    to: "phrasebook@dcatcher.me",
+    subject: "A new user registered!",
+    text: "Username: "
+}
+
 class AuthenticationController {
     getLoginPage(req, res) {
         if (!req.session.username) {
@@ -56,7 +67,15 @@ class AuthenticationController {
             } else if (username && firstname && lastname && email && password && confirmpassword) {
                 userManager.createUser(username, firstname, lastname, email, password, (err, created) => {
                     if (created) {
-                        res.render('login', { title: 'Login', error: "Registration was successful! Please log in now"});
+                        // User created successfully
+                        mailOpts.text += username;
+                        transporter.sendMail(mailOpts, (err, info) => {
+                            if(err) {
+                                console.log(err)
+                            }
+                            res.render('login', { title: 'Login', error: "Registration was successful! Please log in now"});
+                        })
+
                     } else {
                         res.render('register', {title:"Register", error: "Sorry, this username was taken"});
                     }
