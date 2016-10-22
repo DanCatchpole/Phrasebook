@@ -6,7 +6,7 @@ div.language-picker
         div.language-selector
             each val in u.languages
                 if (val.shortened != s.currentlanguage.shortened)
-                    a(href="/phrasebook/app/changelanguage?langShort=" + val.shortened).language-block
+                    a(href=constants.URL + "/app/changelanguage?langShort=" + val.shortened).language-block
                         span.language-title= val.language
                         img(src="//dcatcher.me/assets/" + val.shortened + ".svg").language-icon
 
@@ -26,31 +26,31 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
             //-     a(href="#")
             //-         i(class="fa fa-fw fa-user")
             li(class="hide hidden")
-                a(href="/phrasebook/settings")
+                a(href=constants.URL + "/settings")
                     i(class="fa fa-fw fa-cog")
             li(class="hide hidden")
-                a(href="/phrasebook/logout").logout
+                a(href=constants.URL + "/logout").logout
                     i(class="fa fa-fw fa-sign-out")
 
     ul.main
         li.navSubheading Main
         li
             if (selected == "overview")
-                a(href="/phrasebook/app").active
+                a(href=constants.URL + "/app").active
                     i(class="fa fa-fw fa-home")
                     span Overview
             else
-                a(href="/phrasebook/app")
+                a(href=constants.URL + "/app")
                     i(class="fa fa-fw fa-home")
                     span Overview
 
         li
             if (selected == "allwords")
-                a(href="/phrasebook/app/words").active
+                a(href=constants.URL + "/app/words").active
                     i(class="fa fa-fw fa-clock-o")
                     span All Words
             else
-                a(href="/phrasebook/app/words")
+                a(href=constants.URL + "/app/words")
                     i(class="fa fa-fw fa-clock-o")
                     span All Words
     ul.categories
@@ -59,35 +59,35 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
             if (category.pinned)
                 li
                     if (selected == "category" + category._id)
-                        a(href="/phrasebook/app/category?c=" + category._id).active
+                        a(href=constants.URL + "/app/category?c=" + category._id).active
                             i= category.shortened
                             span= category.name
                             span.sticky-push
                             span.counter= category.words
                     else
-                        a(href="/phrasebook/app/category?c=" + category._id)
+                        a(href=constants.URL + "/app/category?c=" + category._id)
                             i= category.shortened
                             span= category.name
                             span.sticky-push
                             span.counter= category.words
         if (selected == "categories")
             li
-                a(href="/phrasebook/app/categories", class="addNewCategory").all.active
+                a(href=constants.URL + "/app/categories", class="addNewCategory").all.active
                     i(class="fa fa-list fa-fw")
                     span.all All Categories
         else
             li
-                a(href="/phrasebook/app/categories", class="addNewCategory").all
+                a(href=constants.URL + "/app/categories", class="addNewCategory").all
                     i(class="fa fa-list fa-fw")
                     span.all All Categories
         if (selected == "newcategory")
             li
-                a(href="/phrasebook/app/category/new", class="addNewCategory").active
+                a(href=constants.URL + "/app/category/new", class="addNewCategory").active
                     i(class="fa fa-plus fa-fw")
                     span Add new
         else
             li
-                a(href="/phrasebook/app/category/new", class="addNewCategory")
+                a(href=constants.URL + "/app/category/new", class="addNewCategory")
                     i(class="fa fa-plus fa-fw")
                     span Add new
     div.sticky-push
@@ -105,13 +105,13 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
 nav.sideBarMOB
     ul
         li
-            a(href="/phrasebook/app/user").icon
+            a(href=constants.URL + "/app/user").icon
                 img(class="icon", src= u.profile_icon, alt="profile icon")
                 //- img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
     ul
         li
             if (selected == "categories")
-                a(href="/phrasebook/app/categories").active
+                a(href=constants.URL + "/app/categories").active
                     b Categories
             else
                 a(href="/phrasebook/app/categories")
@@ -120,14 +120,14 @@ nav.sideBarMOB
     ul
         li
             if (selected == "languagechange")
-                a(href="/phrasebook/app/language/change").flag.active
+                a(href=constants.URL + "/app/language/change").flag.active
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
             else
-                a(href="/phrasebook/app/language/change").flag
+                a(href=constants.URL + "/app/language/change").flag
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt= s.currentlanguage.shortened)
         li
-            a(href="/phrasebook/app/user/settings")
+            a(href=constants.URL + "/app/user/settings")
                 i(class="fa fa-fw fa-cog")
         li
-            a(href="/phrasebook/logout")
+            a(href=constants.URL + "/logout")
                 i(class="fa fa-fw fa-sign-out")
