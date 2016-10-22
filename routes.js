@@ -36,7 +36,8 @@ router.get('/language/change', languageController.changeLanguage);
 // Word things
 router.get('/words/new', wordController.createWord);
 router.post('/words/new', wordController.createWordPOST);
-router.get('/words/all', wordController.allWords); 
+router.get('/words/all', wordController.allWords);
+router.post('/words/search', wordController.search);
 
 // Error 404
 router.get('/404', overviewController.error404);

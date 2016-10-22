@@ -51,6 +51,26 @@ class WordController {
             res.redirect(constants.URL + "/logout");
         }
     }
+
+    search(req, res) {
+        var sess = req.session;
+        var query = req.body.search;
+        var category = req.body.category;
+        var username = req.body.username;
+        var short = req.body.short;
+        if (category) {
+            var q = types.Word.find({username: username, category: category, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+        } else {
+            var q = types.Word.find({username: username, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+        }
+        q.exec(function(err, wordObjs) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(wordObjs);
+            }
+        });
+    }
 }
 
 module.exports = WordController;
