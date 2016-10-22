@@ -35,7 +35,7 @@ app.use(session({
     store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
-app.use('/phrasebook', routes.router);
+app.use(process.argv[3], routes.router);
 
 app.listen(process.argv[2], "127.0.0.1", () => {
     console.log(`\n${constants.APPNAME} started and listening on port ${process.argv[2]}`);
