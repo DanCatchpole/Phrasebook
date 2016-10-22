@@ -610,6 +610,9 @@ div.submit-section {
         font-size: 2rem;
         max-height: 100%;
         padding: 0.5rem 4rem;
+        border-radius: 0.5rem;
+        border-bottom-left-radius: 0;
+        cursor: pointer;
     }
 }
 
