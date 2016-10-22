@@ -70,7 +70,7 @@ class AuthenticationController {
                             subject: "A new user registered!",
                             text: "Username: " + username
                         }
-                        var transporter = nodemailer.createTransport(sendmailTransport);
+                        var transporter = nodemailer.createTransport('direct:?name="dcatcher.me"');
                         console.log(transporter);
                         transporter.sendMail(mailOpts, (err, info) => {
                             if(err) {
