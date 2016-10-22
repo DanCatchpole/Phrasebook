@@ -3,10 +3,10 @@ var constants = require("./constants");
 var {categoryController, overviewController, authController, languageController, wordController, middlewareController} = require('./instantiatecontrollers');
 
 // Middleware
+router.use(middlewareController.interceptRender);
 router.use(middlewareController.refreshUserDetails);
 // router.use(middlewareController.refreshCategoryLists);
 router.use(middlewareController.firstLogin);
-router.use(middlewareController.interceptRender);
 
 // Login
 router.get('/login', authController.getLoginPage);
