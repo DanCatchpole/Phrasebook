@@ -10,7 +10,6 @@ var sendmailTransport = require('nodemailer-sendmail-transport');
 class AuthenticationController {
 
     constructor() {
-        this.transporter = nodemailer.createTransport(sendmailTransport);
     }
     getLoginPage(req, res) {
         if (!req.session.username) {
@@ -71,8 +70,8 @@ class AuthenticationController {
                             subject: "A new user registered!",
                             text: "Username: " + username
                         }
-
-                        this.transporter.sendMail(mailOpts, (err, info) => {
+                        var transporter = nodemailer.createTransport(sendmailTransport);
+                        transporter.sendMail(mailOpts, (err, info) => {
                             if(err) {
                                 console.log(err)
                             }
