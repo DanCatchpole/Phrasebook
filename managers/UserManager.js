@@ -60,6 +60,25 @@ class UserManager {
         })
     }
 
+    addNewLanguage(user, language, cb) {
+        let getUser = types.User.find({username: user});
+        getUser.exec((err, userObj) => {
+            if (!userObj.languages) {
+                let query = types.User.update({username: user}, {$push: {languages: language}});
+                query.exec((err) => {
+                    if (err) {
+                        console.log(err);
+                        cb(false);
+                    } else {
+                        cb(true);
+                    }
+                });
+            } else {
+                cb(false);
+            }
+        });
+    }
+
 }
 
 module.exports = UserManager;

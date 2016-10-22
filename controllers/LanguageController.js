@@ -34,6 +34,31 @@ class LanguageController {
         }
 
     }
+
+    addLanguage(req, res) {
+        var lang = req.body.langVal;
+        if (req.session.username) {
+            languageManager.getLanguageByShortened(lang, (language) => {
+                if (language) {
+                    userManager.addNewLanguage(req.session.username, language, (done) => {
+                        if (done) {
+                            userManager.getUser(req.session.username, (user) => {
+                                req.session.user = user;
+                                req.session.currentlanguage = user.languages[0];
+                                utils.refreshCategoryLists(req, res, () => {
+                                    res.redirect(constants.URL);
+                                })
+                            })
+                        } else {
+                            res.redirect(constants.URL + "/logout")
+                        }
+                    })
+                }
+            });
+        } else {
+            res.redirect(constants.URL + "/login");
+        }
+    }
 }
 
 module.exports = LanguageController;

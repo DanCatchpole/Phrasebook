@@ -30,7 +30,7 @@ router.get('/category/list', categoryController.allCategories);
 router.get('/category/pin', categoryController.pinCategory);
 
 // Language things
-// router.get('/language/new', languageController.addLanguage); // TODO
+router.post('/language/new', languageController.addLanguage);
 router.get('/language/change', languageController.changeLanguage);
 
 // Word things

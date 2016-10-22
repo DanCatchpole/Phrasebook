@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 app.use(process.argv[3], routes.router);
-console.log(constants.URL);
+
 app.listen(process.argv[2], "127.0.0.1", () => {
     console.log(`\n${constants.APPNAME} started and listening on port ${process.argv[2]}`);
 })
