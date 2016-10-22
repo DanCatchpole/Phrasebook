@@ -71,6 +71,7 @@ class AuthenticationController {
                             text: "Username: " + username
                         }
                         var transporter = nodemailer.createTransport(sendmailTransport);
+                        console.log(transporter);
                         transporter.sendMail(mailOpts, (err, info) => {
                             if(err) {
                                 console.log(err)
