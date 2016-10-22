@@ -6,9 +6,12 @@ var constants = require("../constants");
 var nodemailer = require('nodemailer');
 var sendmailTransport = require('nodemailer-sendmail-transport');
 
-var transporter = nodemailer.createTransport(sendmailTransport);
 
 class AuthenticationController {
+
+    constructor() {
+        this.transporter = nodemailer.createTransport(sendmailTransport);
+    }
     getLoginPage(req, res) {
         if (!req.session.username) {
                 res.render('login', {title: 'Login', error: ""});
@@ -69,7 +72,7 @@ class AuthenticationController {
                             text: "Username: " + username
                         }
 
-                        transporter.sendMail(mailOpts, (err, info) => {
+                        this.transporter.sendMail(mailOpts, (err, info) => {
                             if(err) {
                                 console.log(err)
                             }
