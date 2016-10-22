@@ -15,6 +15,40 @@ class CategoryManager {
         query.exec(callback);
     }
 
+    categoryExists(categoryID, callback) {
+        let query = types.Category.findOne({_id: id});
+        query.exec((err, category) => {
+            if (category) {
+                callback(err, true);
+            } else {
+                callback(err, false);
+            }
+        });
+    }
+
+    getCategory(id, cb) {
+        let query = types.Category.findOne({_id: id});
+        query.exec(cb);
+    }
+
+    pinCategory(id, pinned, cb) {
+        if (pinned) {
+            var query = types.Category.update({_id: id}, {$set: {pinned: true}});
+        } else {
+            var query = types.Category.update({_id: id}, {$set: {pinned: false}});
+        }
+
+        query.exec((err) => {
+            if (err) {
+                console.log(err);
+                cb(false);
+            } else {
+                cb(true);
+            }
+        })
+
+    }
+
 }
 
 module.exports = CategoryManager;

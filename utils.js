@@ -14,7 +14,6 @@ exports.genLoggedInTemplateDetails = (page, username, req) => {
 }
 
 exports.refreshCategoryLists = (req, res, next) => {
-
     if(req.session.username && req.session.currentlanguage) {
         var query = types.Category.find({username: req.session.username, language: req.session.currentlanguage.shortened}).sort({"pinned": -1, "_id": 1});
         query.exec((err, cats) => {

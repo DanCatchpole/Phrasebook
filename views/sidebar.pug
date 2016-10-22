@@ -46,11 +46,11 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
 
         li
             if (selected == "allwords")
-                a(href=constants.URL + "/app/words").active
+                a(href=constants.URL + "/words/all").active
                     i(class="fa fa-fw fa-clock-o")
                     span All Words
             else
-                a(href=constants.URL + "/app/words")
+                a(href=constants.URL + "/words/all")
                     i(class="fa fa-fw fa-clock-o")
                     span All Words
     ul.categories
@@ -59,25 +59,25 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
             if (category.pinned)
                 li
                     if (selected == "category" + category._id)
-                        a(href=constants.URL + "/app/category?c=" + category._id).active
+                        a(href=constants.URL + "/category?c=" + category._id).active
                             i= category.shortened
                             span= category.name
                             span.sticky-push
                             span.counter= category.words
                     else
-                        a(href=constants.URL + "/app/category?c=" + category._id)
+                        a(href=constants.URL + "/category?c=" + category._id)
                             i= category.shortened
                             span= category.name
                             span.sticky-push
                             span.counter= category.words
         if (selected == "categories")
             li
-                a(href=constants.URL + "/app/categories", class="addNewCategory").all.active
+                a(href=constants.URL + "/category/list", class="addNewCategory").all.active
                     i(class="fa fa-list fa-fw")
                     span.all All Categories
         else
             li
-                a(href=constants.URL + "/app/categories", class="addNewCategory").all
+                a(href=constants.URL + "/category/list", class="addNewCategory").all
                     i(class="fa fa-list fa-fw")
                     span.all All Categories
         if (selected == "newcategory")
@@ -87,7 +87,7 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
                     span Add new
         else
             li
-                a(href=constants.URL + "/app/category/new", class="addNewCategory")
+                a(href=constants.URL + "/category/new", class="addNewCategory")
                     i(class="fa fa-plus fa-fw")
                     span Add new
     div.sticky-push
@@ -105,13 +105,13 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
 nav.sideBarMOB
     ul
         li
-            a(href=constants.URL + "/app/user").icon
+            a(href=constants.URL + "/user").icon
                 img(class="icon", src= u.profile_icon, alt="profile icon")
                 //- img(class="flag", src= "http://dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg")
     ul
         li
             if (selected == "categories")
-                a(href=constants.URL + "/app/categories").active
+                a(href=constants.URL + "/categories").active
                     b Categories
             else
                 a(href="/phrasebook/app/categories")
@@ -120,13 +120,13 @@ nav.sideBarMOB
     ul
         li
             if (selected == "languagechange")
-                a(href=constants.URL + "/app/language/change").flag.active
+                a(href=constants.URL + "/language/change").flag.active
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
             else
                 a(href=constants.URL + "/app/language/change").flag
                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt= s.currentlanguage.shortened)
         li
-            a(href=constants.URL + "/app/user/settings")
+            a(href=constants.URL + "/user/settings")
                 i(class="fa fa-fw fa-cog")
         li
             a(href=constants.URL + "/logout")

@@ -5,8 +5,13 @@ var types = require('../types');
 class WordManager {
 
     getWordsInCategoryById(categoryID, callback) {
-        let query = types.Word.find({category: id}).sort({word: 1});
-        query.exec(callback);
+        let query = types.Word.find({category: categoryID}).sort({word: 1});
+        query.exec((err, words) => {
+            if (err) {
+                console.log(err);
+            }
+            callback(words);
+        });
     }
 
     /* Will callback 'true' if the word is added successfully, or 'false' if not

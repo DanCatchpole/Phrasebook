@@ -54,6 +54,7 @@ class MiddlewareController {
         }
         next();
     }
+
 }
 
 module.exports = MiddlewareController;
