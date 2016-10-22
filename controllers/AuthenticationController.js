@@ -3,10 +3,6 @@ var {categoryManager, wordManager, userManager} = require('../instantiatemanager
 var utils = require("../utils");
 var constants = require("../constants");
 
-var nodemailer = require('nodemailer');
-var sendmailTransport = require('nodemailer-sendmail-transport');
-
-
 class AuthenticationController {
 
     constructor() {
@@ -64,21 +60,7 @@ class AuthenticationController {
                 userManager.createUser(username, firstname, lastname, email, password, (err, created) => {
                     if (created) {
                         // User created successfully
-                        var mailOpts = {
-                            from: "phrasebook@dcatcher.me",
-                            to: "phrasebook@dcatcher.me",
-                            subject: "A new user registered!",
-                            text: "Username: " + username
-                        }
-                        var transporter = nodemailer.createTransport('direct:?name="dcatcher.me"');
-                        console.log(transporter);
-                        transporter.sendMail(mailOpts, (err, info) => {
-                            if(err) {
-                                console.log(err)
-                            }
-                            res.render('login', { title: 'Login', error: "Registration was successful! Please log in now"});
-                        })
-
+                        res.render('login', { title: 'Login', error: "Registration was successful! Please log in now"});
                     } else {
                         res.render('register', {title:"Register", error: "Sorry, this username was taken"});
                     }
