@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// node app.js <port> <address> <root of filesystem>
+// Address: probably "/phrasebook" or "/phrasebook-dev"
+// Root: Is "E://" or "F://" on Windows, "/" on my webserver
+
 var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
@@ -31,7 +35,7 @@ app.use(session({
     secret: constants.SECRET,
     saveUninitialized: true,
     resave: true,
-    // Store sessions in the mongo instance - oersistant across Phrasebook restarts
+    // Store sessions in the mongo instance - persistant across Phrasebook restarts
     store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 

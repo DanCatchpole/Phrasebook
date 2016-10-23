@@ -49,14 +49,24 @@ class WordManager {
         });
     };
 
-    getAllWordsForUserInLanguage(username, language, cb) {
-        var query = types.Word.find({username: username, language: language}).sort({'word': 1});
+    getAllWordsForUserInLanguage(username, language, callback) {
+        var query = types.Word.find({username: username, language: language}).sort({'starred': 1, 'word': 1});
         query.exec((err, words) => {
             if (err) {
                 console.log(err);
             }
-            cb(words);
+            callback(words);
         });
+    }
+
+    getStarredWordsInCategory(categoryID, callback) {
+      let query = types.Word.find({category: categoryID, starred: true}).sort({'word': 1});
+      query.exec((err, words) => {
+        if (err) {
+          console.log(err);
+        }
+        callback(words);
+      })
     }
 }
 
