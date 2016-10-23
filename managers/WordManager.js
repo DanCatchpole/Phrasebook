@@ -92,6 +92,18 @@ class WordManager {
             }
         });
     }
+
+    updateWord(oldWord, newWord, newEnglish, username, category, callback) {
+        let query = types.Word.update({word: oldWord, category: category, username: username}, {$set: {word: newWord, translations: newEnglish}});
+        query.exec((err) => {
+            if (err) {
+                console.log(err);
+                callback(false);
+            } else {
+                callback(true);
+            }
+        });
+    }
 }
 
 module.exports = WordManager;

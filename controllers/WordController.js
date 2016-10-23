@@ -76,19 +76,33 @@ class WordController {
         var word = req.body.word;
         var categoryID = req.body.categoryID;
         var star = req.body.starred;
-        console.log(star);
         if (req.session.user && word && categoryID) {
             if (star == "true") {
                 wordManager.starWord(word, categoryID, (done) => {
-                    console.log("Starring word");
                     res.send(done);
                 });
             } else {
                 wordManager.unstarWord(word, categoryID, (done) => {
-                    console.log("Unstarring word");
                     res.send(done);
                 });
             }
+        } else {
+            res.send(false);
+        }
+    }
+
+    updateWord(req, res) {
+        var oldWord = req.body.word;
+        var newWord = req.body.newWord;
+        var newEnglish = req.body.newEnglish;
+        var catID = req.body.category;
+
+        var actualTrans = newEnglish.split(',');
+
+        if(req.session.user && oldWord && newWord && newEnglish) {
+            wordManager.updateWord(oldWord, newWord, actualTrans, req.session.username, catID, (done) => {
+                res.send(done);
+            });
         } else {
             res.send(false);
         }

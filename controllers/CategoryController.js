@@ -30,7 +30,6 @@ class CategoryController {
             categoryManager.getCategory(id, (category) => {
                 if (category.language == sess.currentlanguage.shortened) {
                     wordManager.getWordsInCategoryById(id, (words) => {
-                        console.log(words);
                         res.render('category', { title: `Category (${category.name})`, u: sess.user, selected: "category" + id, s: sess, current: category, words: words });
                     });
                 } else {

@@ -41,6 +41,8 @@ html(lang="en")
                     span.padding
                     span.starred
                         i(style="").fa.fa-fw.fa-star
+                    span.starred
+                        i(style="").fa.fa-fw.fa-pencil
                 div(class="wbadd").wordBlock
                     span.addnew
                         a(href=constants.URL +"/words/new?c=" + current._id) Add new
@@ -58,6 +60,8 @@ html(lang="en")
                                 i.fa.fa-fw.fa-star.star-on
                               else
                                 i.fa.fa-fw.fa-star.star-off
+                            span.edit
+                                i.fa.fa-fw.fa-pencil
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
@@ -66,3 +70,4 @@ html(lang="en")
         script(src="https://dcatcher.me/assetspb" + constants.URL + "/js/comma.js")
         script(src="https://dcatcher.me/assetspb" + constants.URL + "/js/sidebar.js")
         script(src="https://dcatcher.me/assetspb" + constants.URL + "/js/starred.js")
+        script(src="https://dcatcher.me/assetspb" + constants.URL + "/js/editword.js")

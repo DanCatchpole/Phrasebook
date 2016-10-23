@@ -39,6 +39,7 @@ router.post('/words/new', wordController.createWordPOST);
 router.get('/words/all', wordController.allWords);
 router.post('/words/search', wordController.search);
 router.post('/words/star', wordController.toggleStar);
+router.post('/words/update', wordController.updateWord);
 
 // Error 404
 router.get('/404', overviewController.error404);
