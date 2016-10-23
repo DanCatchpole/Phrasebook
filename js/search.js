@@ -19,7 +19,7 @@ $(function(){
             $.post( constantsURL + '/words/search', parameters, function(data) {
                 $(".allWords").html("");
                 if (data.length == 0) {
-                    $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
+                    $(".allWords").html(`<div style='padding: 1rem; color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
                 }
                 for (elem of data) {
                     var $wordBlock = $("<div>", {class: "wordBlock"});

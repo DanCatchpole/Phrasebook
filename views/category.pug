@@ -20,10 +20,10 @@ html(lang="en")
                     div.buttons
                         a(href=constants.URL +"/words/new?c=" + current._id).button Add new word
                         if (current.pinned)
-                            a(href=constants.URL +"/category/pin?c=" + current._id).button.pinned
+                            a(title="Unpin this category", href=constants.URL +"/category/pin?c=" + current._id).button.pinned
                                 i.fa.fa-fw.fa-circle
                         else
-                            a(href=constants.URL +"/category/pin?c=" + current._id + "&p=true").button.pin
+                            a(title="Pin this category", href=constants.URL +"/category/pin?c=" + current._id + "&p=true").button.pin
                                 i.fa.fa-fw.fa-thumb-tack.fa-rotate-45
                         form(onkeypress="return event.keyCode != 13;").searchBox
                             input(type="hidden", id="username", value= s.username)
@@ -57,11 +57,11 @@ html(lang="en")
                             span.padding
                             span.starred
                               if val.starred
-                                i(title="Toggle starred word.").fa.fa-fw.fa-star.star-on
+                                i(title="Toggle starred word").fa.fa-fw.fa-star.star-on
                               else
-                                i.fa.fa-fw.fa-star.star-off
+                                i(title="Toggle starred word").fa.fa-fw.fa-star.star-off
                             span.edit
-                                i(title="Toggle starred word.").fa.fa-fw.fa-pencil
+                                i(title="Edit this word").fa.fa-fw.fa-pencil
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.js")
