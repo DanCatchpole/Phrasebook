@@ -10,56 +10,61 @@ function escapeHtml(text) {
 
 $(function(){
     $('#search').on('keyup', function(e){
-        if ($("#category")) {
-            var parameters = { search: $(this).val(), username: $("#username").val(), category: $("#category").val(), short: $("#shortenedLanguage").val()};
-        } else {
-            var parameters = { search: $(this).val(), username: $("#username").val(), short: $("#shortenedLanguage").val()};
-        }
-        $.post( constantsURL + '/words/search', parameters, function(data) {
-            $(".allWords").html("");
-            if (data.length == 0) {
-                $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
+        if ($(".editing").length == 0) {
+            if ($("#category")) {
+                var parameters = { search: $(this).val(), username: $("#username").val(), category: $("#category").val(), short: $("#shortenedLanguage").val()};
+            } else {
+                var parameters = { search: $(this).val(), username: $("#username").val(), short: $("#shortenedLanguage").val()};
             }
-            for (elem of data) {
-                var $wordBlock = $("<div>", {class: "wordBlock"});
-                var $lang = $("<span>", {class: "lang"});
-                $lang.html(elem.word);
+            $.post( constantsURL + '/words/search', parameters, function(data) {
+                $(".allWords").html("");
+                if (data.length == 0) {
+                    $(".allWords").html(`<div style='color:#d12929; font-weight: 600;' class='wordBlock'> No words match this query: ${escapeHtml(parameters.search)} </div>`);
+                }
+                for (elem of data) {
+                    var $wordBlock = $("<div>", {class: "wordBlock"});
+                    var $lang = $("<span>", {class: "lang"});
+                    $lang.html(elem.word);
 
-                var $padding1 = $("<span>", {class: "padding"});
+                    var $padding1 = $("<span>", {class: "padding"});
 
-                var $translations = $("<span>", {class: "english"});
-                $translations.text(elem.translations);
-
-
-                $wordBlock.append($lang);
-                $wordBlock.append($padding1);
-                $wordBlock.append($translations);
-                if ($("#categoryRequired").text() == "Category") {
-                    var $padding2 = $("<span>", {class: "padding"});
-                    var $category = $("<span>", {class: "category"});
-                    $category.text(elem.catName);
+                    var $translations = $("<span>", {class: "english"});
+                    $translations.text(elem.translations);
 
 
-                    $wordBlock.append($padding2);
-                    $wordBlock.append($category);
-                } else {
-                    var $padding3 = $("<span>", {class: "padding"});
-                    $wordBlock.append($padding3);
+                    $wordBlock.append($lang);
+                    $wordBlock.append($padding1);
+                    $wordBlock.append($translations);
+                    if ($("#categoryRequired").text() == "Category") {
+                        var $padding2 = $("<span>", {class: "padding"});
+                        var $category = $("<span>", {class: "category"});
+                        $category.text(elem.catName);
 
-                    var $star = $("<span>", {class: "starred"});
-                    if (elem.starred) {
-                        $star.append($("<i>", {class: "fa fa-fw fa-star star-on"}))
+
+                        $wordBlock.append($padding2);
+                        $wordBlock.append($category);
                     } else {
-                        $star.append($("<i>", {class: "fa fa-fw fa-star star-off"}))
+                        var $padding3 = $("<span>", {class: "padding"});
+                        $wordBlock.append($padding3);
+
+                        var $star = $("<span>", {class: "starred"});
+                        if (elem.starred) {
+                            $star.append($("<i>", {class: "fa fa-fw fa-star star-on"}))
+                        } else {
+                            $star.append($("<i>", {class: "fa fa-fw fa-star star-off"}))
+                        }
+                        $wordBlock.append($star);
+
+                        var $edit = $("<span>", {class: "edit"});
+                        $edit.append($("<i>", {class: "fa fa-fw fa-pencil"}))
+                        $wordBlock.append($edit);
+
                     }
 
-                    $wordBlock.append($star);
-
+                    $(".allWords").append($wordBlock);
                 }
-
-                $(".allWords").append($wordBlock);
-            }
-            comma();
-        });
+                comma();
+            });
+        }
     });
 });
