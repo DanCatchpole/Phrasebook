@@ -41,7 +41,20 @@ $(function(){
 
 
                     $wordBlock.append($padding2);
-                    $wordBlock.append($category)
+                    $wordBlock.append($category);
+                } else {
+                    var $padding3 = $("<span>", {class: "padding"});
+                    $wordBlock.append($padding3);
+
+                    var $star = $("<span>", {class: "starred"});
+                    if (elem.starred) {
+                        $star.append($("<i>", {class: "fa fa-fw fa-star star-on"}))
+                    } else {
+                        $star.append($("<i>", {class: "fa fa-fw fa-star star-off"}))
+                    }
+
+                    $wordBlock.append($star);
+
                 }
 
                 $(".allWords").append($wordBlock);

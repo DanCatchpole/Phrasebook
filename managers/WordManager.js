@@ -5,7 +5,7 @@ var types = require('../types');
 class WordManager {
 
     getWordsInCategoryById(categoryID, callback) {
-        let query = types.Word.find({category: categoryID}).sort({word: 1});
+        let query = types.Word.find({category: categoryID}).sort({starred: -1, word: 1});
         query.exec((err, words) => {
             if (err) {
                 console.log(err);
@@ -67,6 +67,30 @@ class WordManager {
         }
         callback(words);
       })
+    }
+
+    starWord(word, categoryID, callback) {
+        let query = types.Word.update({word: word, category: categoryID}, {$set: {starred: true}});
+        query.exec((err) => {
+            if (err) {
+                console.log(err);
+                callback(false);
+            } else {
+                callback(true);
+            }
+        })
+    }
+
+    unstarWord(word, categoryID, callback) {
+        let query = types.Word.update({word: word, category: categoryID}, {$set: {starred: false}});
+        query.exec((err) => {
+            if (err) {
+                console.log(err);
+                callback(false);
+            } else {
+                callback(true);
+            }
+        });
     }
 }
 

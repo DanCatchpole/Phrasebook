@@ -1053,6 +1053,23 @@ div.errorMessage {
 
     .starred {
         font-size: 1.25rem;
+        i {
+            cursor: pointer;
+            color: #999;
+            transition: color 0.5s;
+        }
+
+        i.star-on {
+            color: #ff9000;
+        }
+
+        i.star-off {
+            color: #999;
+        }
+
+        i.star-off:hover {
+            // color: #ff9000;
+        }
     }
 }
 
@@ -1063,6 +1080,9 @@ div.errorMessage {
 
 .wbtitle {
     font-family: $mons;
+    .starred i {
+        color: #333;
+    }
 }
 
 .wordBlock:not(.wbtitle) {

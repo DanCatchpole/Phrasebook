@@ -59,9 +59,9 @@ class WordController {
         var username = req.body.username;
         var short = req.body.short;
         if (category) {
-            var q = types.Word.find({username: username, category: category, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+            var q = types.Word.find({username: username, category: category, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'starred': -1, 'word': 1});
         } else {
-            var q = types.Word.find({username: username, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'word': 1});
+            var q = types.Word.find({username: username, language: short, $or: [{translations: {"$regex": query, "$options": "i"}}, {word: {"$regex": query, "$options": "i"}}]}).sort({'starred': -1, 'word': 1});
         }
         q.exec(function(err, wordObjs) {
             if (err) {
@@ -70,6 +70,28 @@ class WordController {
                 res.send(wordObjs);
             }
         });
+    }
+
+    toggleStar(req, res) {
+        var word = req.body.word;
+        var categoryID = req.body.categoryID;
+        var star = req.body.starred;
+        console.log(star);
+        if (req.session.user && word && categoryID) {
+            if (star == "true") {
+                wordManager.starWord(word, categoryID, (done) => {
+                    console.log("Starring word");
+                    res.send(done);
+                });
+            } else {
+                wordManager.unstarWord(word, categoryID, (done) => {
+                    console.log("Unstarring word");
+                    res.send(done);
+                });
+            }
+        } else {
+            res.send(false);
+        }
     }
 }
 
