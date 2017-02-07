@@ -27,6 +27,7 @@ Login:
 - ...
 - Add email functionality
 - Reimplement the sidebar design to look like this:
+
 ![sidebar](https://dcatcher.me/i/pEWZ2kJK.png "Sidebar")
 
 
