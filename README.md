@@ -26,6 +26,9 @@ Login:
 - Allow for editing user details
 - ...
 - Add email functionality
+- Reimplement the sidebar design to look like this:
+![sidebar](https://dcatcher.me/i/pEWZ2kJK.png "Sidebar")
+
 
 ## Running
 1. Clone the repository
