@@ -1,6 +1,10 @@
 # Phrasebook
 
-Phrasebook is a WIP Web Application that can assist users in learning a language.
+Phrasebook is a WIP Web Application that can assist users in learning a language. I created this during the time I had started learning French, in order to have a neat, centralised place which I could store my vocabulary. It also allowed me to learn new ways of backend web development, instead of the typical PHP based applications I had learnt previously on my own and within university modules. There were no specific target users, but it can be used by anyone that wants to store vocabulary they learn during any kind of language study.
+
+## Technologies
+
+Written in JavaScript utilising NodeJS, this project draws upon many different technologies, from MongoDB as a backend store for the data (Users, Words, Categories and Languages) to Pug, a templating engine used in order to render the pages with filled in data from the database. This is rendered on the backend to generate a HTML file which is then sent to the web user. The web server is built using Express v4, and structured using the MVC (Model-View-Controller) method.
 
 ## Screenshots:
 
