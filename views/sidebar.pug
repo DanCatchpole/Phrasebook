@@ -10,18 +10,18 @@ div.language-picker
                         span.language-title= val.language
                         img(src="//dcatcher.me/assets/" + val.shortened + ".svg").language-icon
 
-nav.sidebar(class=s.sidebar === "small" ? "small" : "")
+nav.sidebar-new(class=s.sidebar === "small" ? "small" : "")
     div(style="display: none;", id="constantsURL")= constants.URL
-    div.user-section
-        ul.section
-            li.drop
-                a(href='#', class='userIcon')
-                    div.userSection
-                        img(class="icon", src= u.profile_icon, alt="profile icon")
-                        img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="Language Flag")
-                    span= `${u.firstname} ${u.lastname.substring(0, 1)}.`
-                    span.sticky-push
-                    img(class="rot arrow", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="toggle")
+    //- div.user-section
+    //-     ul.section
+    //-         li.drop
+    //-             a(href='#', class='userIcon')
+    //-                 div.userSection
+    //-                     img(class="icon", src= u.profile_icon, alt="profile icon")
+    //-                     img(class="flag", src= "//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="Language Flag")
+    //-                 span= `${u.firstname} ${u.lastname.substring(0, 1)}.`
+    //-                 span.sticky-push
+    //-                 img(class="rot arrow", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="toggle")
         //- ul.dropdown-elements
         //-     //- li(class="hide hidden")
         //-     //-     a(href="#")
@@ -36,27 +36,32 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
     ul.main
         //- li.navSubheading Main
         li
-            a(href=constants.URL)
-                i(class="fa fa-fw fa-home")
-                b Menu
+            a(href="#").logo
+                i
+                  img(src="https://dcatcher.me/assets/menu.svg")
+                span Menu
         li
             if (selected == "overview")
                 a(href=constants.URL).active
-                    i(class="fa fa-fw fa-home")
-                    span Overview
+                  i
+                    img(src="https://dcatcher.me/assets/Home.svg")
+                  span Overview
             else
                 a(href=constants.URL)
-                    i(class="fa fa-fw fa-home")
-                    span Overview
+                  i
+                    img(src="https://dcatcher.me/assets/Home.svg")
+                  span Overview
         li
             if (selected == "allwords")
                 a(href=constants.URL + "/words/all").active
-                    i(class="fa fa-fw fa-clock-o")
-                    span All Words
+                  i
+                    img(src="https://dcatcher.me/assets/All.svg")
+                  span All Words
             else
                 a(href=constants.URL + "/words/all")
-                    i(class="fa fa-fw fa-clock-o")
-                    span All Words
+                  i
+                    img(src="https://dcatcher.me/assets/All.svg")
+                  span All Words
     ul.categories
         //- li.navSubheading Categories
         each category in s.categories
@@ -66,45 +71,48 @@ nav.sidebar(class=s.sidebar === "small" ? "small" : "")
                         a(href=constants.URL + "/category?c=" + category._id).active
                             i= category.shortened
                             span= category.name
-                            span.sticky-push
-                            span.counter= category.words
+                            //- span.sticky-push
+                            //- span.counter= category.words
                     else
                         a(href=constants.URL + "/category?c=" + category._id)
                             i= category.shortened
                             span= category.name
-                            span.sticky-push
-                            span.counter= category.words
+                            //- span.sticky-push
+                            //- span.counter= category.words
         if (selected == "categories")
             li
                 a(href=constants.URL + "/category/list", class="addNewCategory").all.active
-                    i(class="fa fa-list fa-fw")
-                    span.all All Categories
+                    i
+                      img(src="https://dcatcher.me/assets/Dots.svg")
+                    span.all Categories
         else
             li
                 a(href=constants.URL + "/category/list", class="addNewCategory").all
-                    i(class="fa fa-list fa-fw")
-                    span.all All Categories
-        if (selected == "newcategory")
-            li
-                a(href=constants.URL + "/category/new", class="addNewCategory").active
-                    i(class="fa fa-plus fa-fw")
-                    span Add new
-        else
-            li
-                a(href=constants.URL + "/category/new", class="addNewCategory")
-                    i(class="fa fa-plus fa-fw")
-                    span Add new
+                    i
+                      img(src="https://dcatcher.me/assets/Dots.svg")
+                    span.all Categories
+        //- if (selected == "newcategory")
+        //-     li
+        //-         a(href=constants.URL + "/category/new", class="addNewCategory").active
+        //-             i(class="fa fa-plus fa-fw")
+        //-             span Add new
+        //- else
+        //-     li
+        //-         a(href=constants.URL + "/category/new", class="addNewCategory")
+        //-             i(class="fa fa-plus fa-fw")
+        //-             span Add new
     div.sticky-push
-    ul.languages.dropDown
+    ul.userinfo
         //- li.navSubheading Language
+        //- li
+        //-     a(href="#",id="language-change-link").currentlanguage
+        //-         img(class="languageIcon", src="//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
+        //-         span Change Language
         li
-            a(href="#",id="language-change-link").currentlanguage
-                img(class="languageIcon", src="//dcatcher.me/assets/" + s.currentlanguage.shortened + ".svg", alt="current language")
-                span Change Language
-        li
-            a(href="#").shrink
-                img(class="rot arrow rot-180 hideBar", src="//dcatcher.me/testing/sidebar/downarrow.svg", alt="hide")
-                span Hide Navigation Bar
+            a(href="#").user
+                i
+                  img(src= u.profile_icon).user-icon
+                span.all= `${u.firstname} ${u.lastname.substring(0, 1)}.`
 
 nav.sideBarMOB
     ul

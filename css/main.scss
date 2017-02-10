@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 @mixin prefix($property, $value, $vendors: webkit moz ms o) {
@@ -12,6 +13,7 @@
 
 $mainFont: "Open Sans", sans-serif;
 $mons: "Montserrat", sans-serif;
+$rale: "Raleway", sans-serif;
 
 $barColor: #1b1b1b ;
 $barColorDim: #370005;
@@ -151,6 +153,97 @@ main.noSidebar {
     z-index: 1000;
 }
 
+.sidebar-new {
+  justify-content: space-between;
+  max-width: 20rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to top left, #002847 0%, #000010 100%);
+  // padding-bottom: 1rem;
+  // background-size: cover;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: $rale;
+
+    li {
+      a {
+        height: 3.5rem;
+        padding: 0.75rem 0rem;
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between;
+        // padding: 0.5rem 0rem;
+
+        i {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          // text-align: center;
+          font-style: normal;
+          font-size: 1.75rem;
+          font-weight: 700;
+          width: 4rem;
+
+          img {
+            width: 1.75rem;
+            height: 1.75rem;
+          }
+
+          img.user-icon {
+            border-radius: 50%;
+            // border: px solid white;
+          }
+        }
+
+        span:not(.sticky-push):not(.counter) {
+          padding-left: 0.5rem;
+          display: flex;
+          align-items: center;
+          font-size: 1.5rem;
+        }
+
+
+      }
+
+      a:hover:not(.active):not(.logo):not(.user) {
+        background-color: rgba(255, 255, 255, 0.10);
+      }
+
+      a.active {
+        background-color: rgba(255, 255, 255, 0.40);
+      }
+
+      a.logo {
+        font-weight: 700;
+      }
+
+      a.user {
+        background-color: rgba(255,255,255, 0.1)
+      }
+    }
+  }
+
+  ul:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.sidebar-new.small {
+  width: 4rem;
+  // padding: 0;
+  // margin: 0;
+}
+
+
 .sidebar {
     justify-content: space-between;
     max-width: 20rem;
@@ -233,7 +326,6 @@ main.noSidebar {
                 span.counter {
                     color: darken($primary, 10%);
                 }
-
             }
 
             a:hover:not(.active):not(.logo):not(.userIcon) {
