@@ -3,7 +3,7 @@ html(lang="en")
     head
         title= title
         meta(name="viewport", content="width-device-width, initial-scale=1")
-        link(rel="stylesheet", href= "https://dcatcher.me/assetspb" + constants.URL + "/css/main.min.css", type="text/css")
+        link(rel="stylesheet", href= constants.URL + "/css/main.min.css", type="text/css")
         link(rel="stylesheet", href= "https://use.fontawesome.com/1b61713aa1.css", type="text/css")
         link(rel="icon", type="image/x-icon", href="/assets/favicon.png")
     body.registerPage.logReg
@@ -19,7 +19,7 @@ html(lang="en")
             div.loginBlock
                 div.formTitle
                     div.logo
-                        include /var/www/html/assets/logo-col.svg
+                        object(data="https://dcatcher.me/assets/logo-col.svg")
                     //- img(src="https://dcatcher.me/assets/logo-col.svg", alt="Phrasebook logo").logo
                 form(class='glass-form', action='register', method='post')
                     if error

@@ -8,3 +8,6 @@ node_modules
 
 # debugging locally
 assetspb
+*.min.css
+*.css.map
+.idea/

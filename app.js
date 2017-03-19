@@ -5,7 +5,6 @@
 
 var express = require('express');
 var app = express();
-var MongoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -20,10 +19,10 @@ mongoose.connect('mongodb://localhost:27017/phrasebook');
 var constants = require('./constants');
 
 app.set('view engine', 'pug');
-app.locals.basedir = process.argv[4];
 // Setup directories for use statically
-app.use('/css', express.static("" + __dirname + '/css'));
-app.use('/js', express.static(__dirname + '/js'));
+console.log(__dirname);
+app.use(`${process.argv[3]}/css`, express.static(__dirname + '/css'));
+app.use(`${process.argv[3]}/js`, express.static(__dirname + '/js'));
 // // app.use('/assets', express.static(__dirname + '/assets'));
 app.set('views', __dirname + '/views');
 
